@@ -17,6 +17,39 @@ public class Start extends AppCompatActivity {
 
     protected static MediaPlayer mp;
 
+    protected static Player p1 = new Player(100000,10, 0,0,0,0,0,0,0,0,0,0,0,0);
+
+    protected static Pocket n_p_1000 = new Pocket(1000, "일반 씨앗 주머니", 1000);
+
+    protected static Flower f_5000 = new Flower(5000, "마조람", 5000);
+    protected static Flower f_5001 = new Flower(5001, "로즈마리", 7500);
+    protected static Flower f_5002 = new Flower(5002, "레몬밤", 5000);
+    protected static Flower f_5003 = new Flower(5003, "쟈스민", 7500);
+    protected static Flower f_5004 = new Flower(5004, "장미", 15000);
+    protected static Flower f_5005 = new Flower(5005, "쥬나퍼베리", 10000);
+    protected static Flower f_5006 = new Flower(5006, "카모마일", 10000);
+    protected static Flower f_5007 = new Flower(5007, "페츌리", 10000);
+    protected static Flower f_5008 = new Flower(5008, "페퍼민트", 10000);
+
+    protected static Flower f_5900 = new Flower(5900, "라벤더", 50000);
+    protected static Flower f_5901 = new Flower(5901, "만다린", 50000);
+    protected static Flower f_5902 = new Flower(5902, "설원 장미", 150000);
+    protected static Flower f_5903 = new Flower(5903, "타트리", 100000);
+
+    protected static Seed s_6000 = new Seed(6000, "마조람 씨앗");
+    protected static Seed s_6001 = new Seed(6001, "로즈마리 씨앗");
+    protected static Seed s_6002 = new Seed(6002, "레몬밤 씨앗");
+    protected static Seed s_6003 = new Seed(6003, "쟈스민 씨앗");
+    protected static Seed s_6004 = new Seed(6004, "장미 씨앗");
+    protected static Seed s_6005 = new Seed(6005, "쥬나퍼베리 씨앗");
+    protected static Seed s_6006 = new Seed(6006, "카모마일 씨앗");
+    protected static Seed s_6007 = new Seed(6007, "페츌리 씨앗");
+
+    protected static Seed s_6900 = new Seed(6900, "라벤더 씨앗");
+    protected static Seed s_6901 = new Seed(6901, "만다린 씨앗");
+    protected static Seed s_6902 = new Seed(6902, "설원 장미 씨앗");
+    protected static Seed s_6903 = new Seed(6903, "타트리 씨앗");
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -1,7 +1,7 @@
-package item;
+package com.gunejjang.fl0werf4rm;
 
 /**
- * Created by tahm_ on 2018-01-19.
+ * Created by tahm_ on 2018-01-22.
  */
 
 public class Pocket {
@@ -15,6 +15,3 @@ public class Pocket {
         price = g_price;
     }
 }
-
-    Pocket n_p_1000 = new Pocket(1000, "일반 씨앗 주머니", 1000);
-    Pocket h_p_1001 = new Pocket(1001, "희귀한 씨앗 주머니", 3000);
