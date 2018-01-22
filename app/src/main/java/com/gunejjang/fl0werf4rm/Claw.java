@@ -3,6 +3,7 @@ package com.gunejjang.fl0werf4rm;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -53,6 +54,17 @@ public class Claw extends AppCompatActivity {
             }
         });
         // 씨앗 뽑기
+
+        TextView tv3 = (TextView)findViewById(R.id.text_back_return);
+        tv3.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent i = new Intent(Claw.this, Main.class);
+                startActivity(i);
+                overridePendingTransition(0, 0);
+                finish();
+            }
+        });
+        // 식물 도감 이동 터치 이벤트
     }
 
     @Override

@@ -3,6 +3,7 @@ package com.gunejjang.fl0werf4rm;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -28,6 +29,7 @@ public class Main extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(Main.this, Claw.class);
                 startActivity(i);
+                overridePendingTransition(0, 0);
                 finish();
             }
         });
@@ -38,6 +40,7 @@ public class Main extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(Main.this, Book.class);
                 startActivity(i);
+                overridePendingTransition(0, 0);
                 finish();
             }
         });
@@ -47,6 +50,24 @@ public class Main extends AppCompatActivity {
         TextView textview = (TextView)findViewById(R.id.text_money);
         textview.setText(s_money);
         // 텍스트 뷰 돈 출력
+
+        TextView tv3 = (TextView)findViewById(R.id.text_back_shop);
+        tv3.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent i = new Intent(Main.this, Shop.class);
+                startActivity(i);
+                overridePendingTransition(0, 0);
+
+                mp.stop();
+                mp = MediaPlayer.create(Main.this, R.raw.music_shop);
+                mp.setLooping(true);
+                mp.start();
+                // 배경 음악
+
+                finish();
+            }
+        });
+        // 상점 이동 터치 이벤트
 
     }
 
