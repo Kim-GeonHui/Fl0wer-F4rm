@@ -22,7 +22,9 @@
         <activity android:name=".Book" />
         <activity android:name=".Alert0" />
         <activity android:name=".Inventory" />
-        <activity android:name=".Shop"></activity>
+        <activity android:name=".Shop" />
+        <activity android:name=".Raise" />
+        <activity android:name=".Seed_Choice"></activity>
     </application>
 
 </manifest>

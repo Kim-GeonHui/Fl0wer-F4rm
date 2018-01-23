@@ -41,6 +41,13 @@ public class Main extends AppCompatActivity {
                 Intent i = new Intent(Main.this, Book.class);
                 startActivity(i);
                 overridePendingTransition(0, 0);
+
+                mp.stop();
+                mp = MediaPlayer.create(Main.this, R.raw.music_book);
+                mp.setLooping(true);
+                mp.start();
+                // 배경 음악
+
                 finish();
             }
         });
@@ -68,6 +75,17 @@ public class Main extends AppCompatActivity {
             }
         });
         // 상점 이동 터치 이벤트
+
+        TextView tv4 = (TextView)findViewById(R.id.text_back_raise);
+        tv4.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent i = new Intent(Main.this, Raise.class);
+                startActivity(i);
+                overridePendingTransition(0, 0);
+                finish();
+            }
+        });
+        // 꽃키우기 터치 이벤트
 
     }
 

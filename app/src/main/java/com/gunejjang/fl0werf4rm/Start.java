@@ -17,7 +17,7 @@ public class Start extends AppCompatActivity {
 
     protected static MediaPlayer mp;
 
-    protected static Player p1 = new Player(10000,10, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
+    protected static Player p1 = new Player(1000000,10, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
 
     protected static Pocket n_p_1000 = new Pocket(1000, "일반 씨앗 주머니", 1000);
 
@@ -53,7 +53,16 @@ public class Start extends AppCompatActivity {
     protected static Soil s_3000 = new Soil(3000, "흙", 0, 1500);
     protected static Soil s_3001 = new Soil(3001, "비옥한 흙", 1, 2500);
 
-    protected static Water w_2000 = new Water(2000, "물", 1500);
+    protected static Water w_2000 = new Water(2000, "물", 500);
+
+    protected static Flower_Raise f_r_1 = new Flower_Raise(0,0,0,0,0,0);
+    protected static Flower_Raise f_r_2 = new Flower_Raise(0,0,0,0,0,0);
+    protected static Flower_Raise f_r_3 = new Flower_Raise(0,0,0,0,0,1);
+    protected static Flower_Raise f_r_4 = new Flower_Raise(0,0,0,0,0,1);
+    protected static Flower_Raise f_r_5 = new Flower_Raise(0,0,0,0,0,1);
+    protected static Flower_Raise f_r_6 = new Flower_Raise(0,0,0,0,0,1);
+
+    protected static int before_pot = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
