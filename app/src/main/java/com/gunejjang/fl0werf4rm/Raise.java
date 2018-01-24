@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.tsengvn.typekit.TypekitContextWrapper;
 
+import static com.gunejjang.fl0werf4rm.Start.b_s;
 import static com.gunejjang.fl0werf4rm.Start.before_pot;
 import static com.gunejjang.fl0werf4rm.Start.f_5000;
 import static com.gunejjang.fl0werf4rm.Start.f_5001;
@@ -99,35 +100,347 @@ public class Raise extends AppCompatActivity {
         }
 
 
-        if (f_r_1.level>=2) {
+        if (f_r_1.level>=2&& f_r_1.level!=3) {
             Drawable i1 = getResources().getDrawable(R.drawable.pot1);
             ImageView iv_pot1 =(ImageView)findViewById(R.id.image_pot1);
             iv_pot1.setImageDrawable(i1);
         }
-        else if (f_r_2.level>=2) {
+        if (f_r_2.level>=2&& f_r_2.level!=3) {
             Drawable i2 = getResources().getDrawable(R.drawable.pot1);
             ImageView iv_pot2 =(ImageView)findViewById(R.id.image_pot2);
             iv_pot2.setImageDrawable(i2);
         }
-        else if (f_r_3.level>=2) {
+        if (f_r_3.level>=2&& f_r_3.level!=3) {
             Drawable i3 = getResources().getDrawable(R.drawable.pot1);
             ImageView iv_pot3 =(ImageView)findViewById(R.id.image_pot3);
             iv_pot3.setImageDrawable(i3);
         }
-        else if (f_r_4.level>=2) {
+        if (f_r_4.level>=2&& f_r_3.level!=3) {
             Drawable i4 = getResources().getDrawable(R.drawable.pot1);
             ImageView iv_pot4 =(ImageView)findViewById(R.id.image_pot4);
             iv_pot4.setImageDrawable(i4);
         }
-        else if (f_r_5.level>=2) {
+        if (f_r_5.level>=2&& f_r_3.level!=3) {
             Drawable i5 = getResources().getDrawable(R.drawable.pot1);
             ImageView iv_pot5 =(ImageView)findViewById(R.id.image_pot5);
             iv_pot5.setImageDrawable(i5);
         }
-        else if (f_r_6.level>=2) {
+        if (f_r_6.level==2&& f_r_3.level!=3) {
             Drawable i6 = getResources().getDrawable(R.drawable.pot1);
             ImageView iv_pot6 =(ImageView)findViewById(R.id.image_pot6);
             iv_pot6.setImageDrawable(i6);
+        }
+
+        if (f_r_1.level==3) {
+            ImageView iv_pot1 = (ImageView)findViewById(R.id.image_pot1);
+            if (f_r_1.category==6000) {
+                Drawable i1 = getResources().getDrawable(R.drawable.flower_5000);
+                iv_pot1.setImageDrawable(i1);
+            }
+            else if (f_r_1.category==6001) {
+                Drawable i1 = getResources().getDrawable(R.drawable.flower_5001);
+                iv_pot1.setImageDrawable(i1);
+            }
+            else if (f_r_1.category==6002) {
+                Drawable i1 = getResources().getDrawable(R.drawable.flower_5002);
+                iv_pot1.setImageDrawable(i1);
+            }
+            else if (f_r_1.category==6003) {
+                Drawable i1 = getResources().getDrawable(R.drawable.flower_5003);
+                iv_pot1.setImageDrawable(i1);
+            }
+            else if (f_r_1.category==6004) {
+                Drawable i1 = getResources().getDrawable(R.drawable.flower_5004);
+                iv_pot1.setImageDrawable(i1);
+            }
+            else if (f_r_1.category==6005) {
+                Drawable i1 = getResources().getDrawable(R.drawable.flower_5005);
+                iv_pot1.setImageDrawable(i1);
+            }
+            else if (f_r_1.category==6006) {
+                Drawable i1 = getResources().getDrawable(R.drawable.flower_5006);
+                iv_pot1.setImageDrawable(i1);
+            }
+            else if (f_r_1.category==6007) {
+                Drawable i1 = getResources().getDrawable(R.drawable.flower_5007);
+                iv_pot1.setImageDrawable(i1);
+            }
+            else if (f_r_1.category==6900) {
+                Drawable i1 = getResources().getDrawable(R.drawable.flower_5900);
+                iv_pot1.setImageDrawable(i1);
+            }
+            else if (f_r_1.category==6901) {
+                Drawable i1 = getResources().getDrawable(R.drawable.flower_5901);
+                iv_pot1.setImageDrawable(i1);
+            }
+            else if (f_r_1.category==6902) {
+                Drawable i1 = getResources().getDrawable(R.drawable.flower_5902);
+                iv_pot1.setImageDrawable(i1);
+            }
+            else if (f_r_1.category==6903) {
+                Drawable i1 = getResources().getDrawable(R.drawable.flower_5903);
+                iv_pot1.setImageDrawable(i1);
+            }
+        }
+
+        if (f_r_2.level==3) {
+            ImageView iv_pot1 = (ImageView)findViewById(R.id.image_pot2);
+            if (f_r_2.category==6000) {
+                Drawable i1 = getResources().getDrawable(R.drawable.flower_5000);
+                iv_pot1.setImageDrawable(i1);
+            }
+            else if (f_r_2.category==6001) {
+                Drawable i1 = getResources().getDrawable(R.drawable.flower_5001);
+                iv_pot1.setImageDrawable(i1);
+            }
+            else if (f_r_2.category==6002) {
+                Drawable i1 = getResources().getDrawable(R.drawable.flower_5002);
+                iv_pot1.setImageDrawable(i1);
+            }
+            else if (f_r_2.category==6003) {
+                Drawable i1 = getResources().getDrawable(R.drawable.flower_5003);
+                iv_pot1.setImageDrawable(i1);
+            }
+            else if (f_r_2.category==6004) {
+                Drawable i1 = getResources().getDrawable(R.drawable.flower_5004);
+                iv_pot1.setImageDrawable(i1);
+            }
+            else if (f_r_2.category==6005) {
+                Drawable i1 = getResources().getDrawable(R.drawable.flower_5005);
+                iv_pot1.setImageDrawable(i1);
+            }
+            else if (f_r_2.category==6006) {
+                Drawable i1 = getResources().getDrawable(R.drawable.flower_5006);
+                iv_pot1.setImageDrawable(i1);
+            }
+            else if (f_r_2.category==6007) {
+                Drawable i1 = getResources().getDrawable(R.drawable.flower_5007);
+                iv_pot1.setImageDrawable(i1);
+            }
+            else if (f_r_2.category==6900) {
+                Drawable i1 = getResources().getDrawable(R.drawable.flower_5900);
+                iv_pot1.setImageDrawable(i1);
+            }
+            else if (f_r_2.category==6901) {
+                Drawable i1 = getResources().getDrawable(R.drawable.flower_5901);
+                iv_pot1.setImageDrawable(i1);
+            }
+            else if (f_r_2.category==6902) {
+                Drawable i1 = getResources().getDrawable(R.drawable.flower_5902);
+                iv_pot1.setImageDrawable(i1);
+            }
+            else if (f_r_2.category==6903) {
+                Drawable i1 = getResources().getDrawable(R.drawable.flower_5903);
+                iv_pot1.setImageDrawable(i1);
+            }
+        }
+
+        if (f_r_3.level==3) {
+            ImageView iv_pot1 = (ImageView)findViewById(R.id.image_pot3);
+            if (f_r_3.category==6000) {
+                Drawable i1 = getResources().getDrawable(R.drawable.flower_5000);
+                iv_pot1.setImageDrawable(i1);
+            }
+            else if (f_r_3.category==6001) {
+                Drawable i1 = getResources().getDrawable(R.drawable.flower_5001);
+                iv_pot1.setImageDrawable(i1);
+            }
+            else if (f_r_3.category==6002) {
+                Drawable i1 = getResources().getDrawable(R.drawable.flower_5002);
+                iv_pot1.setImageDrawable(i1);
+            }
+            else if (f_r_3.category==6003) {
+                Drawable i1 = getResources().getDrawable(R.drawable.flower_5003);
+                iv_pot1.setImageDrawable(i1);
+            }
+            else if (f_r_3.category==6004) {
+                Drawable i1 = getResources().getDrawable(R.drawable.flower_5004);
+                iv_pot1.setImageDrawable(i1);
+            }
+            else if (f_r_3.category==6005) {
+                Drawable i1 = getResources().getDrawable(R.drawable.flower_5005);
+                iv_pot1.setImageDrawable(i1);
+            }
+            else if (f_r_3.category==6006) {
+                Drawable i1 = getResources().getDrawable(R.drawable.flower_5006);
+                iv_pot1.setImageDrawable(i1);
+            }
+            else if (f_r_3.category==6007) {
+                Drawable i1 = getResources().getDrawable(R.drawable.flower_5007);
+                iv_pot1.setImageDrawable(i1);
+            }
+            else if (f_r_3.category==6900) {
+                Drawable i1 = getResources().getDrawable(R.drawable.flower_5900);
+                iv_pot1.setImageDrawable(i1);
+            }
+            else if (f_r_3.category==6901) {
+                Drawable i1 = getResources().getDrawable(R.drawable.flower_5901);
+                iv_pot1.setImageDrawable(i1);
+            }
+            else if (f_r_3.category==6902) {
+                Drawable i1 = getResources().getDrawable(R.drawable.flower_5902);
+                iv_pot1.setImageDrawable(i1);
+            }
+            else if (f_r_3.category==6903) {
+                Drawable i1 = getResources().getDrawable(R.drawable.flower_5903);
+                iv_pot1.setImageDrawable(i1);
+            }
+        }
+
+        if (f_r_4.level==3) {
+            ImageView iv_pot1 = (ImageView)findViewById(R.id.image_pot4);
+            if (f_r_4.category==6000) {
+                Drawable i1 = getResources().getDrawable(R.drawable.flower_5000);
+                iv_pot1.setImageDrawable(i1);
+            }
+            else if (f_r_4.category==6001) {
+                Drawable i1 = getResources().getDrawable(R.drawable.flower_5001);
+                iv_pot1.setImageDrawable(i1);
+            }
+            else if (f_r_4.category==6002) {
+                Drawable i1 = getResources().getDrawable(R.drawable.flower_5002);
+                iv_pot1.setImageDrawable(i1);
+            }
+            else if (f_r_4.category==6003) {
+                Drawable i1 = getResources().getDrawable(R.drawable.flower_5003);
+                iv_pot1.setImageDrawable(i1);
+            }
+            else if (f_r_4.category==6004) {
+                Drawable i1 = getResources().getDrawable(R.drawable.flower_5004);
+                iv_pot1.setImageDrawable(i1);
+            }
+            else if (f_r_4.category==6005) {
+                Drawable i1 = getResources().getDrawable(R.drawable.flower_5005);
+                iv_pot1.setImageDrawable(i1);
+            }
+            else if (f_r_4.category==6006) {
+                Drawable i1 = getResources().getDrawable(R.drawable.flower_5006);
+                iv_pot1.setImageDrawable(i1);
+            }
+            else if (f_r_4.category==6007) {
+                Drawable i1 = getResources().getDrawable(R.drawable.flower_5007);
+                iv_pot1.setImageDrawable(i1);
+            }
+            else if (f_r_4.category==6900) {
+                Drawable i1 = getResources().getDrawable(R.drawable.flower_5900);
+                iv_pot1.setImageDrawable(i1);
+            }
+            else if (f_r_4.category==6901) {
+                Drawable i1 = getResources().getDrawable(R.drawable.flower_5901);
+                iv_pot1.setImageDrawable(i1);
+            }
+            else if (f_r_4.category==6902) {
+                Drawable i1 = getResources().getDrawable(R.drawable.flower_5902);
+                iv_pot1.setImageDrawable(i1);
+            }
+            else if (f_r_4.category==6903) {
+                Drawable i1 = getResources().getDrawable(R.drawable.flower_5903);
+                iv_pot1.setImageDrawable(i1);
+            }
+        }
+
+        if (f_r_5.level==3) {
+            ImageView iv_pot1 = (ImageView)findViewById(R.id.image_pot5);
+            if (f_r_5.category==6000) {
+                Drawable i1 = getResources().getDrawable(R.drawable.flower_5000);
+                iv_pot1.setImageDrawable(i1);
+            }
+            else if (f_r_5.category==6001) {
+                Drawable i1 = getResources().getDrawable(R.drawable.flower_5001);
+                iv_pot1.setImageDrawable(i1);
+            }
+            else if (f_r_5.category==6002) {
+                Drawable i1 = getResources().getDrawable(R.drawable.flower_5002);
+                iv_pot1.setImageDrawable(i1);
+            }
+            else if (f_r_5.category==6003) {
+                Drawable i1 = getResources().getDrawable(R.drawable.flower_5003);
+                iv_pot1.setImageDrawable(i1);
+            }
+            else if (f_r_5.category==6004) {
+                Drawable i1 = getResources().getDrawable(R.drawable.flower_5004);
+                iv_pot1.setImageDrawable(i1);
+            }
+            else if (f_r_5.category==6005) {
+                Drawable i1 = getResources().getDrawable(R.drawable.flower_5005);
+                iv_pot1.setImageDrawable(i1);
+            }
+            else if (f_r_5.category==6006) {
+                Drawable i1 = getResources().getDrawable(R.drawable.flower_5006);
+                iv_pot1.setImageDrawable(i1);
+            }
+            else if (f_r_5.category==6007) {
+                Drawable i1 = getResources().getDrawable(R.drawable.flower_5007);
+                iv_pot1.setImageDrawable(i1);
+            }
+            else if (f_r_5.category==6900) {
+                Drawable i1 = getResources().getDrawable(R.drawable.flower_5900);
+                iv_pot1.setImageDrawable(i1);
+            }
+            else if (f_r_5.category==6901) {
+                Drawable i1 = getResources().getDrawable(R.drawable.flower_5901);
+                iv_pot1.setImageDrawable(i1);
+            }
+            else if (f_r_5.category==6902) {
+                Drawable i1 = getResources().getDrawable(R.drawable.flower_5902);
+                iv_pot1.setImageDrawable(i1);
+            }
+            else if (f_r_5.category==6903) {
+                Drawable i1 = getResources().getDrawable(R.drawable.flower_5903);
+                iv_pot1.setImageDrawable(i1);
+            }
+        }
+
+        if (f_r_6.level==3) {
+            ImageView iv_pot1 = (ImageView)findViewById(R.id.image_pot6);
+            if (f_r_6.category==6000) {
+                Drawable i1 = getResources().getDrawable(R.drawable.flower_5000);
+                iv_pot1.setImageDrawable(i1);
+            }
+            else if (f_r_6.category==6001) {
+                Drawable i1 = getResources().getDrawable(R.drawable.flower_5001);
+                iv_pot1.setImageDrawable(i1);
+            }
+            else if (f_r_6.category==6002) {
+                Drawable i1 = getResources().getDrawable(R.drawable.flower_5002);
+                iv_pot1.setImageDrawable(i1);
+            }
+            else if (f_r_6.category==6003) {
+                Drawable i1 = getResources().getDrawable(R.drawable.flower_5003);
+                iv_pot1.setImageDrawable(i1);
+            }
+            else if (f_r_6.category==6004) {
+                Drawable i1 = getResources().getDrawable(R.drawable.flower_5004);
+                iv_pot1.setImageDrawable(i1);
+            }
+            else if (f_r_6.category==6005) {
+                Drawable i1 = getResources().getDrawable(R.drawable.flower_5005);
+                iv_pot1.setImageDrawable(i1);
+            }
+            else if (f_r_6.category==6006) {
+                Drawable i1 = getResources().getDrawable(R.drawable.flower_5006);
+                iv_pot1.setImageDrawable(i1);
+            }
+            else if (f_r_6.category==6007) {
+                Drawable i1 = getResources().getDrawable(R.drawable.flower_5007);
+                iv_pot1.setImageDrawable(i1);
+            }
+            else if (f_r_6.category==6900) {
+                Drawable i1 = getResources().getDrawable(R.drawable.flower_5900);
+                iv_pot1.setImageDrawable(i1);
+            }
+            else if (f_r_6.category==6901) {
+                Drawable i1 = getResources().getDrawable(R.drawable.flower_5901);
+                iv_pot1.setImageDrawable(i1);
+            }
+            else if (f_r_6.category==6902) {
+                Drawable i1 = getResources().getDrawable(R.drawable.flower_5902);
+                iv_pot1.setImageDrawable(i1);
+            }
+            else if (f_r_6.category==6903) {
+                Drawable i1 = getResources().getDrawable(R.drawable.flower_5903);
+                iv_pot1.setImageDrawable(i1);
+            }
         }
         // level에 따른 단지 이미지 변경
 
@@ -291,6 +604,8 @@ public class Raise extends AppCompatActivity {
 
                 else if (f_r_1.level==3) {
                     if (f_r_1.category==6000) {
+                        book_save(b_s, f_r_1.category);
+
                         p1.f_5000+=1;
 
                         f_r_1.level=0;
@@ -312,6 +627,8 @@ public class Raise extends AppCompatActivity {
                         dialog3.show();
                     }
                     else if (f_r_1.category==6001) {
+                        book_save(b_s, f_r_1.category);
+
                         p1.f_5001+=1;
 
                         f_r_1.level=0;
@@ -333,6 +650,8 @@ public class Raise extends AppCompatActivity {
                         dialog3.show();
                     }
                     else if (f_r_1.category==6002) {
+                        book_save(b_s, f_r_1.category);
+
                         p1.f_5002+=1;
 
                         f_r_1.level=0;
@@ -354,6 +673,8 @@ public class Raise extends AppCompatActivity {
                         dialog3.show();
                     }
                     else if (f_r_1.category==6003) {
+                        book_save(b_s, f_r_1.category);
+
                         p1.f_5003+=1;
 
                         f_r_1.level=0;
@@ -375,6 +696,8 @@ public class Raise extends AppCompatActivity {
                         dialog3.show();
                     }
                     else if (f_r_1.category==6004) {
+                        book_save(b_s, f_r_1.category);
+
                         p1.f_5004+=1;
 
                         f_r_1.level=0;
@@ -396,6 +719,8 @@ public class Raise extends AppCompatActivity {
                         dialog3.show();
                     }
                     else if (f_r_1.category==6005) {
+                        book_save(b_s, f_r_1.category);
+
                         p1.f_5005+=1;
 
                         f_r_1.level=0;
@@ -417,6 +742,8 @@ public class Raise extends AppCompatActivity {
                         dialog3.show();
                     }
                     else if (f_r_1.category==6006) {
+                        book_save(b_s, f_r_1.category);
+
                         p1.f_5006+=1;
 
                         f_r_1.level=0;
@@ -438,6 +765,8 @@ public class Raise extends AppCompatActivity {
                         dialog3.show();
                     }
                     else if (f_r_1.category==6007) {
+                        book_save(b_s, f_r_1.category);
+
                         p1.f_5007+=1;
 
                         f_r_1.level=0;
@@ -459,6 +788,8 @@ public class Raise extends AppCompatActivity {
                         dialog3.show();
                     }
                     else if (f_r_1.category==6900) {
+                        book_save(b_s, f_r_1.category);
+
                         p1.f_5900+=1;
 
                         f_r_1.level=0;
@@ -480,6 +811,8 @@ public class Raise extends AppCompatActivity {
                         dialog3.show();
                     }
                     else if (f_r_1.category==6901) {
+                        book_save(b_s, f_r_1.category);
+
                         p1.f_5901+=1;
 
                         f_r_1.level=0;
@@ -501,6 +834,8 @@ public class Raise extends AppCompatActivity {
                         dialog3.show();
                     }
                     else if (f_r_1.category==6902) {
+                        book_save(b_s, f_r_1.category);
+
                         p1.f_5902+=1;
 
                         f_r_1.level=0;
@@ -522,6 +857,8 @@ public class Raise extends AppCompatActivity {
                         dialog3.show();
                     }
                     else if (f_r_1.category==6903) {
+                        book_save(b_s, f_r_1.category);
+
                         p1.f_5903+=1;
 
                         f_r_1.level=0;
@@ -652,6 +989,46 @@ public class Raise extends AppCompatActivity {
         });
         // 날짜변경 터치 이벤트
     }
+
+    public void book_save(Book_Save b_s, int code) {
+        if (b_s.num1==0) {
+            b_s.num1=code;
+        }
+        else if (b_s.num2==0) {
+            b_s.num2=code;
+        }
+        else if (b_s.num3==0) {
+            b_s.num3=code;
+        }
+        else if (b_s.num4==0) {
+            b_s.num4=code;
+        }
+        else if (b_s.num5==0) {
+            b_s.num5=code;
+        }
+        else if (b_s.num6==0) {
+            b_s.num6=code;
+        }
+        else if (b_s.num7==0) {
+            b_s.num7=code;
+        }
+        else if (b_s.num8==0) {
+            b_s.num8=code;
+        }
+        else if (b_s.num9==0) {
+            b_s.num9=code;
+        }
+        else if (b_s.num10==0) {
+            b_s.num10=code;
+        }
+        else if (b_s.num11==0) {
+            b_s.num11=code;
+        }
+        else if (b_s.num12==0) {
+            b_s.num12=code;
+        }
+    }
+    // 도감
 
     @Override
     public void onBackPressed() {

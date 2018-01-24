@@ -64,6 +64,8 @@ public class Start extends AppCompatActivity {
 
     protected static int before_pot = 0;
 
+    protected static Book_Save b_s = new Book_Save(0,0,0,0,0,0,0,0,0,0,0,0);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
