@@ -14,6 +14,8 @@ import android.widget.Toast;
 
 import com.tsengvn.typekit.TypekitContextWrapper;
 
+import java.util.Random;
+
 import static com.gunejjang.fl0werf4rm.Start.b_s;
 import static com.gunejjang.fl0werf4rm.Start.before_pot;
 import static com.gunejjang.fl0werf4rm.Start.f_5000;
@@ -36,6 +38,7 @@ import static com.gunejjang.fl0werf4rm.Start.f_r_5;
 import static com.gunejjang.fl0werf4rm.Start.f_r_6;
 import static com.gunejjang.fl0werf4rm.Start.mp;
 import static com.gunejjang.fl0werf4rm.Start.p1;
+import static com.gunejjang.fl0werf4rm.Start.weather_num;
 
 public class Raise extends AppCompatActivity {
 
@@ -43,6 +46,9 @@ public class Raise extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_raise);
+
+        weather(f_r_1,f_r_2,f_r_3,f_r_4,f_r_5,f_r_6);
+        // 날씨
 
         TextView tv1 = (TextView)findViewById(R.id.text_back_back);
         tv1.setOnClickListener(new View.OnClickListener() {
@@ -902,6 +908,49 @@ public class Raise extends AppCompatActivity {
                     dialog3.show();
                 }
                 // level4 마름
+
+                else if (f_r_1.level==5) {
+                    f_r_1.level=0;
+                    f_r_1.category=0;
+                    f_r_1.day=0;
+                    f_r_1.water=0;
+
+                    AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                    builder3.setTitle("눈이 내림으로 인해 꽃이 얼어붙었습니다.");
+                    builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent i = new Intent(Raise.this, Raise.class);
+                            startActivity(i);
+                            overridePendingTransition(0, 0);
+                            finish();
+                        }
+                    });
+                    AlertDialog dialog3 = builder3.create();
+                    dialog3.show();
+                }
+                // level5 얼어붙음
+
+                else if (f_r_1.level==6) {
+                    f_r_1.level=0;
+                    f_r_1.category=0;
+                    f_r_1.day=0;
+                    f_r_1.water=0;
+
+                    AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                    builder3.setTitle("가뭄으로 인하여 꽃이 말라비틀어졌습니다.");
+                    builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent i = new Intent(Raise.this, Raise.class);
+                            startActivity(i);
+                            overridePendingTransition(0, 0);
+                            finish();
+                        }
+                    });
+                    AlertDialog dialog3 = builder3.create();
+                    dialog3.show();
+                }
+                // level6 가뭄
+
             }
         });
         // pot1 터치 이벤트
@@ -981,6 +1030,8 @@ public class Raise extends AppCompatActivity {
                     }
                 }
 
+                weather_num=0;
+
                 Intent i = new Intent(Raise.this, Main.class);
                 startActivity(i);
                 overridePendingTransition(0, 0);
@@ -990,7 +1041,7 @@ public class Raise extends AppCompatActivity {
         // 날짜변경 터치 이벤트
     }
 
-    public void book_save(Book_Save b_s, int code) {
+    protected void book_save(Book_Save b_s, int code) {
         if (b_s.num1==0) {
             b_s.num1=code;
         }
@@ -1029,6 +1080,166 @@ public class Raise extends AppCompatActivity {
         }
     }
     // 도감
+
+    protected void weather(Flower_Raise f_r1,Flower_Raise f_r2, Flower_Raise f_r3, Flower_Raise f_r4, Flower_Raise f_r5, Flower_Raise f_r6) {
+        Random rand = new Random();
+        int num = rand.nextInt(100);
+
+        Random rand2 = new Random();
+        int num2 = rand2.nextInt(100);
+
+        final Random rand3 = new Random();
+        final int num3 = rand3.nextInt(100);
+
+        if (weather_num==0) {
+            weather_num=1;
+
+            if (0 <= num && num <= 29) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(Raise.this);
+                builder.setTitle("오늘은 날씨가 화창합니다.");
+                builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
+            else if (30 <= num && num <= 54) {
+                if (f_r1.level == 2) {
+                    f_r1.water += 1;
+                }
+                if (f_r2.level == 2) {
+                    f_r2.water += 1;
+                }
+                if (f_r3.level == 2) {
+                    f_r3.water += 1;
+                }
+                if (f_r4.level == 2) {
+                    f_r4.water += 1;
+                }
+                if (f_r5.level == 2) {
+                    f_r5.water += 1;
+                }
+                if (f_r6.level == 2) {
+                    f_r6.water += 1;
+                }
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(Raise.this);
+                builder.setTitle("오늘은 비가 내립니다.");
+                builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            } else if (55 <= num && num <= 79) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(Raise.this);
+                builder.setTitle("오늘은 날씨가 흐립니다.");
+                builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
+            else if (80 <= num && num <= 89) {
+                if (f_r1.level == 2) {
+                    if (0 <= num2 && num2 <= 49) {
+                        f_r1.level = 5;
+                    }
+                }
+                if (f_r2.level == 2) {
+                    if (0 <= num2 && num2 <= 49) {
+                        f_r2.level = 5;
+                    }
+                }
+                if (f_r3.level == 2) {
+                    if (0 <= num2 && num2 <= 49) {
+                        f_r3.level = 5;
+                    }
+                }
+                if (f_r4.level == 2) {
+                    if (0 <= num2 && num2 <= 49) {
+                        f_r4.level = 5;
+                    }
+                }
+                if (f_r5.level == 2) {
+                    if (0 <= num2 && num2 <= 49) {
+                        f_r5.level = 5;
+                    }
+                }
+                if (f_r6.level == 2) {
+                    if (0 <= num2 && num2 <= 49) {
+                        f_r6.level = 5;
+                    }
+                }
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(Raise.this);
+                builder.setTitle("오늘은 눈이 옵니다.");
+                builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        if (0<=num3&&num3<=25) {
+                            p1.s_7000+=1;
+
+                            Toast.makeText(getApplicationContext(),"눈덩이를 획득하였습니다.", Toast.LENGTH_LONG).show();
+                        }
+                        else if (50<=num3&&num3<=99) {
+                            dialog.dismiss();
+                        }
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
+
+            else if (90 <= num && num <= 99) {
+                if (f_r1.level == 2) {
+                    if (0 <= num2 && num2 <= 49) {
+                        f_r1.level = 6;
+                    }
+                }
+                if (f_r2.level == 2) {
+                    if (0 <= num2 && num2 <= 49) {
+                        f_r2.level = 6;
+                    }
+                }
+                if (f_r3.level == 2) {
+                    if (0 <= num2 && num2 <= 49) {
+                        f_r3.level = 6;
+                    }
+                }
+                if (f_r4.level == 2) {
+                    if (0 <= num2 && num2 <= 49) {
+                        f_r4.level = 6;
+                    }
+                }
+                if (f_r5.level == 2) {
+                    if (0 <= num2 && num2 <= 49) {
+                        f_r5.level = 6;
+                    }
+                }
+                if (f_r6.level == 2) {
+                    if (0 <= num2 && num2 <= 49) {
+                        f_r6.level = 6;
+                    }
+                }
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(Raise.this);
+                builder.setTitle("오늘은 가뭄이 들었습니다.");
+                builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
+        }
+    }
+    // 날씨
 
     @Override
     public void onBackPressed() {

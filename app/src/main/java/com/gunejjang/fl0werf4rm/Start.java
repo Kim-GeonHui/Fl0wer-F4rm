@@ -17,7 +17,7 @@ public class Start extends AppCompatActivity {
 
     protected static MediaPlayer mp;
 
-    protected static Player p1 = new Player(1000000,10, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
+    protected static Player p1 = new Player(1000000,10, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
 
     protected static Pocket n_p_1000 = new Pocket(1000, "일반 씨앗 주머니", 1000);
 
@@ -65,6 +65,8 @@ public class Start extends AppCompatActivity {
     protected static int before_pot = 0;
 
     protected static Book_Save b_s = new Book_Save(0,0,0,0,0,0,0,0,0,0,0,0);
+
+    protected static int weather_num = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

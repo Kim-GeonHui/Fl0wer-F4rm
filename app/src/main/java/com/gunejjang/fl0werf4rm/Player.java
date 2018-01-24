@@ -41,7 +41,9 @@ public class Player {
     protected int f_5902;
     protected int f_5903;
 
-    public Player(int g_money, int g_pocket, int g_s_6000, int g_s_6001, int g_s_6002, int g_s_6003, int g_s_6004, int g_s_6005, int g_s_6006, int g_s_6007, int g_s_6900, int g_s_6901, int g_s_6902, int g_s_6903, int g_s_3000, int g_s_3001, int g_w_2000, int g_f_5000, int g_f_5001, int g_f_5002, int g_f_5003, int g_f_5004, int g_f_5005, int g_f_5006, int g_f_5007, int g_f_5008, int g_f_5900, int g_f_5901, int g_f_5902, int g_f_5903) {
+    protected int s_7000;
+
+    public Player(int g_money, int g_pocket, int g_s_6000, int g_s_6001, int g_s_6002, int g_s_6003, int g_s_6004, int g_s_6005, int g_s_6006, int g_s_6007, int g_s_6900, int g_s_6901, int g_s_6902, int g_s_6903, int g_s_3000, int g_s_3001, int g_w_2000, int g_f_5000, int g_f_5001, int g_f_5002, int g_f_5003, int g_f_5004, int g_f_5005, int g_f_5006, int g_f_5007, int g_f_5008, int g_f_5900, int g_f_5901, int g_f_5902, int g_f_5903, int g_s_7000) {
         money = g_money;
 
         pocket = g_pocket;
@@ -77,5 +79,7 @@ public class Player {
         f_5901 = g_f_5901;
         f_5902 = g_f_5902;
         f_5903 = g_f_5903;
+
+        s_7000 = g_s_7000;
     }
 }
