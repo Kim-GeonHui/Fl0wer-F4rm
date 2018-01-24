@@ -3535,31 +3535,31 @@ public class Raise extends AppCompatActivity {
                         f_r_1.water -= 1;
                     }
                 }
-                else if (f_r_2.day>=1) {
+                if (f_r_2.day>=1) {
                     if (f_r_2.level==2) {
                         f_r_2.day += 1;
                         f_r_2.water -= 1;
                     }
                 }
-                else if (f_r_3.day>=1) {
+                if (f_r_3.day>=1) {
                     if (f_r_3.level==3) {
                         f_r_3.day += 1;
                         f_r_3.water -= 1;
                     }
                 }
-                else if (f_r_4.day>=1) {
+                if (f_r_4.day>=1) {
                     if (f_r_4.level==2) {
                         f_r_4.day += 1;
                         f_r_4.water -= 1;
                     }
                 }
-                else if (f_r_5.day>=1) {
+                if (f_r_5.day>=1) {
                     if (f_r_5.level==2) {
                         f_r_5.day += 1;
                         f_r_5.water -= 1;
                     }
                 }
-                else if (f_r_6.day>=1) {
+                if (f_r_6.day>=1) {
                     if (f_r_6.level==2) {
                         f_r_6.day += 1;
                         f_r_6.water -= 1;
@@ -3621,11 +3621,26 @@ public class Raise extends AppCompatActivity {
         Random rand = new Random();
         int num = rand.nextInt(100);
 
-        Random rand2 = new Random();
-        int num2 = rand2.nextInt(100);
+        final Random rand2 = new Random();
+        final int num2 = rand2.nextInt(100);
 
         final Random rand3 = new Random();
         final int num3 = rand3.nextInt(100);
+
+        final Random rand4 = new Random();
+        final int num4 = rand4.nextInt(100);
+
+        final Random rand5 = new Random();
+        final int num5 = rand5.nextInt(100);
+
+        final Random rand6 = new Random();
+        final int num6 = rand6.nextInt(100);
+
+        final Random rand7 = new Random();
+        final int num7 = rand7.nextInt(100);
+
+        final Random rand8 = new Random();
+        final int num8 = rand8.nextInt(100);
 
         if (weather_num==0) {
             weather_num=1;
@@ -3688,27 +3703,27 @@ public class Raise extends AppCompatActivity {
                     }
                 }
                 if (f_r2.level == 2) {
-                    if (0 <= num2 && num2 <= 49) {
+                    if (0 <= num3 && num3 <= 49) {
                         f_r2.level = 5;
                     }
                 }
                 if (f_r3.level == 2) {
-                    if (0 <= num2 && num2 <= 49) {
+                    if (0 <= num4 && num4 <= 49) {
                         f_r3.level = 5;
                     }
                 }
                 if (f_r4.level == 2) {
-                    if (0 <= num2 && num2 <= 49) {
+                    if (0 <= num5 && num5 <= 49) {
                         f_r4.level = 5;
                     }
                 }
                 if (f_r5.level == 2) {
-                    if (0 <= num2 && num2 <= 49) {
+                    if (0 <= num6 && num6 <= 49) {
                         f_r5.level = 5;
                     }
                 }
                 if (f_r6.level == 2) {
-                    if (0 <= num2 && num2 <= 49) {
+                    if (0 <= num7 && num7 <= 49) {
                         f_r6.level = 5;
                     }
                 }
@@ -3722,7 +3737,7 @@ public class Raise extends AppCompatActivity {
 
                             Toast.makeText(getApplicationContext(),"눈덩이를 획득하였습니다.", Toast.LENGTH_LONG).show();
                         }
-                        else if (50<=num3&&num3<=99) {
+                        else if (50<=num8&&num8<=99) {
                             dialog.dismiss();
                         }
                     }
@@ -3738,27 +3753,27 @@ public class Raise extends AppCompatActivity {
                     }
                 }
                 if (f_r2.level == 2) {
-                    if (0 <= num2 && num2 <= 49) {
+                    if (0 <= num3 && num3 <= 49) {
                         f_r2.level = 6;
                     }
                 }
                 if (f_r3.level == 2) {
-                    if (0 <= num2 && num2 <= 49) {
+                    if (0 <= num4 && num4 <= 49) {
                         f_r3.level = 6;
                     }
                 }
                 if (f_r4.level == 2) {
-                    if (0 <= num2 && num2 <= 49) {
+                    if (0 <= num5 && num5 <= 49) {
                         f_r4.level = 6;
                     }
                 }
                 if (f_r5.level == 2) {
-                    if (0 <= num2 && num2 <= 49) {
+                    if (0 <= num6 && num6 <= 49) {
                         f_r5.level = 6;
                     }
                 }
                 if (f_r6.level == 2) {
-                    if (0 <= num2 && num2 <= 49) {
+                    if (0 <= num7 && num7 <= 49) {
                         f_r6.level = 6;
                     }
                 }
