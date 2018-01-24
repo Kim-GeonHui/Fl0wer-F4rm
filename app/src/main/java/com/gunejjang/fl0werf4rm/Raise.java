@@ -955,6 +955,493 @@ public class Raise extends AppCompatActivity {
         });
         // pot1 터치 이벤트
 
+        ImageView iv_p2 = (ImageView)findViewById(R.id.image_pot2);
+        iv_p2.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+                if (f_r_2.level==0) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(Raise.this);
+                    builder.setTitle("화분 속이 비어있습니다.\n어떤 흙을 채우시겠습니까?");
+                    builder.setNegativeButton("흙", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            if (p1.s_3000>0) {
+                                p1.s_3000-=1;
+                                f_r_2.level=1;
+
+                                Intent i = new Intent(Raise.this, Raise.class);
+                                startActivity(i);
+                                overridePendingTransition(0, 0);
+                                finish();
+
+                                Toast.makeText(getApplicationContext(),  "흙으로 화분을 채웠습니다.", Toast.LENGTH_LONG).show();
+                            }
+                            else {
+                                AlertDialog.Builder builder2 = new AlertDialog.Builder(Raise.this);
+                                builder2.setTitle("흙이 없습니다.");
+                                builder2.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.dismiss();
+                                    }
+                                });
+                                AlertDialog dialog2 = builder2.create();
+                                dialog2.show();
+                            }
+                        }
+                    });
+                    builder.setPositiveButton("비옥한 흙", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            if (p1.s_3001>0) {
+                                p1.s_3001-=1;
+                                f_r_2.level=1;
+                                f_r_2.day+=1;
+
+                                Intent i = new Intent(Raise.this, Raise.class);
+                                startActivity(i);
+                                overridePendingTransition(0, 0);
+                                finish();
+
+                                Toast.makeText(getApplicationContext(),  "비옥한 흙으로 화분을 채웠습니다.", Toast.LENGTH_LONG).show();
+                            }
+                            else {
+                                AlertDialog.Builder builder4 = new AlertDialog.Builder(Raise.this);
+                                builder4.setTitle("비옥한 흙이 없습니다.");
+                                builder4.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.dismiss();
+                                    }
+                                });
+                                AlertDialog dialog4 = builder4.create();
+                                dialog4.show();
+                            }
+                        }
+                    });
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                }
+                // level0 흙
+
+                else if (f_r_2.level==1) {
+                    if (p1.s_6000==0&&p1.s_6001==0&&p1.s_6002==0&&p1.s_6003==0&&p1.s_6004==0&&p1.s_6005==0&&p1.s_6006==0&&p1.s_6007==0&&p1.s_6900==0&&p1.s_6901==0&&p1.s_6902==0&&p1.s_6903==0) {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(Raise.this);
+                        builder.setTitle("씨앗이 하나도 없습니다.");
+                        builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                        AlertDialog dialog = builder.create();
+                        dialog.show();
+                    }
+                    else {
+                        before_pot = 2;
+
+                        Intent i = new Intent(Raise.this, Seed_Choice.class);
+                        startActivity(i);
+                        overridePendingTransition(0, 0);
+                        finish();
+                    }
+                }
+                // level1 씨앗
+
+                else if (f_r_2.level==2) {
+                    if (f_r_2.water==1) {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(Raise.this);
+                        builder.setTitle("충분히 축축합니다.");
+                        builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                        AlertDialog dialog = builder.create();
+                        dialog.show();
+                    }
+                    else if (f_r_2.water<=0) {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(Raise.this);
+                        builder.setTitle("물기가 없어 보입니다.\n물을 주시겠습니까?");
+                        builder.setNegativeButton("예", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                if (p1.w_2000>=1) {
+                                    p1.w_2000-=1;
+                                    f_r_2.water+=1;
+
+                                    Intent i = new Intent(Raise.this, Raise.class);
+                                    startActivity(i);
+                                    overridePendingTransition(0, 0);
+                                    finish();
+
+                                    Toast.makeText(getApplicationContext(),  "화분에 물을 주었습니다.", Toast.LENGTH_LONG).show();
+                                }
+                                else {
+                                    AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                                    builder3.setTitle("물이 없습니다.");
+                                    builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            dialog.dismiss();
+                                        }
+                                    });
+                                    AlertDialog dialog3 = builder3.create();
+                                    dialog3.show();
+                                }
+                            }
+                        });
+                        builder.setPositiveButton("아니오", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                        AlertDialog dialog = builder.create();
+                        dialog.show();
+                    }
+                }
+                //level2 raise
+
+                else if (f_r_2.level==3) {
+                    if (f_r_2.category==6000) {
+                        book_save(b_s, f_r_2.category);
+
+                        p1.f_5000+=1;
+
+                        f_r_2.level=0;
+                        f_r_2.category=0;
+                        f_r_2.day=0;
+                        f_r_2.water=0;
+
+                        AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                        builder3.setTitle("씨앗이 다 자라서 "+ f_5000.name+"이 피었습니다!");
+                        builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent i = new Intent(Raise.this, Raise.class);
+                                startActivity(i);
+                                overridePendingTransition(0, 0);
+                                finish();
+                            }
+                        });
+                        AlertDialog dialog3 = builder3.create();
+                        dialog3.show();
+                    }
+                    else if (f_r_2.category==6001) {
+                        book_save(b_s, f_r_2.category);
+
+                        p1.f_5001+=1;
+
+                        f_r_2.level=0;
+                        f_r_2.category=0;
+                        f_r_2.day=0;
+                        f_r_2.water=0;
+
+                        AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                        builder3.setTitle("씨앗이 다 자라서 "+ f_5001.name+"이 피었습니다!");
+                        builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent i = new Intent(Raise.this, Raise.class);
+                                startActivity(i);
+                                overridePendingTransition(0, 0);
+                                finish();
+                            }
+                        });
+                        AlertDialog dialog3 = builder3.create();
+                        dialog3.show();
+                    }
+                    else if (f_r_2.category==6002) {
+                        book_save(b_s, f_r_2.category);
+
+                        p1.f_5002+=1;
+
+                        f_r_2.level=0;
+                        f_r_2.category=0;
+                        f_r_2.day=0;
+                        f_r_2.water=0;
+
+                        AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                        builder3.setTitle("씨앗이 다 자라서 "+ f_5002.name+"이 피었습니다!");
+                        builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent i = new Intent(Raise.this, Raise.class);
+                                startActivity(i);
+                                overridePendingTransition(0, 0);
+                                finish();
+                            }
+                        });
+                        AlertDialog dialog3 = builder3.create();
+                        dialog3.show();
+                    }
+                    else if (f_r_2.category==6003) {
+                        book_save(b_s, f_r_2.category);
+
+                        p1.f_5003+=1;
+
+                        f_r_2.level=0;
+                        f_r_2.category=0;
+                        f_r_2.day=0;
+                        f_r_2.water=0;
+
+                        AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                        builder3.setTitle("씨앗이 다 자라서 "+ f_5003.name+"이 피었습니다!");
+                        builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent i = new Intent(Raise.this, Raise.class);
+                                startActivity(i);
+                                overridePendingTransition(0, 0);
+                                finish();
+                            }
+                        });
+                        AlertDialog dialog3 = builder3.create();
+                        dialog3.show();
+                    }
+                    else if (f_r_2.category==6004) {
+                        book_save(b_s, f_r_2.category);
+
+                        p1.f_5004+=1;
+
+                        f_r_2.level=0;
+                        f_r_2.category=0;
+                        f_r_2.day=0;
+                        f_r_2.water=0;
+
+                        AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                        builder3.setTitle("씨앗이 다 자라서 "+ f_5004.name+"이 피었습니다!");
+                        builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent i = new Intent(Raise.this, Raise.class);
+                                startActivity(i);
+                                overridePendingTransition(0, 0);
+                                finish();
+                            }
+                        });
+                        AlertDialog dialog3 = builder3.create();
+                        dialog3.show();
+                    }
+                    else if (f_r_2.category==6005) {
+                        book_save(b_s, f_r_2.category);
+
+                        p1.f_5005+=1;
+
+                        f_r_2.level=0;
+                        f_r_2.category=0;
+                        f_r_2.day=0;
+                        f_r_2.water=0;
+
+                        AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                        builder3.setTitle("씨앗이 다 자라서 "+ f_5005.name+"이 피었습니다!");
+                        builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent i = new Intent(Raise.this, Raise.class);
+                                startActivity(i);
+                                overridePendingTransition(0, 0);
+                                finish();
+                            }
+                        });
+                        AlertDialog dialog3 = builder3.create();
+                        dialog3.show();
+                    }
+                    else if (f_r_2.category==6006) {
+                        book_save(b_s, f_r_2.category);
+
+                        p1.f_5006+=1;
+
+                        f_r_2.level=0;
+                        f_r_2.category=0;
+                        f_r_2.day=0;
+                        f_r_2.water=0;
+
+                        AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                        builder3.setTitle("씨앗이 다 자라서 "+ f_5006.name+"이 피었습니다!");
+                        builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent i = new Intent(Raise.this, Raise.class);
+                                startActivity(i);
+                                overridePendingTransition(0, 0);
+                                finish();
+                            }
+                        });
+                        AlertDialog dialog3 = builder3.create();
+                        dialog3.show();
+                    }
+                    else if (f_r_2.category==6007) {
+                        book_save(b_s, f_r_2.category);
+
+                        p1.f_5007+=1;
+
+                        f_r_2.level=0;
+                        f_r_2.category=0;
+                        f_r_2.day=0;
+                        f_r_2.water=0;
+
+                        AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                        builder3.setTitle("씨앗이 다 자라서 "+ f_5007.name+"이 피었습니다!");
+                        builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent i = new Intent(Raise.this, Raise.class);
+                                startActivity(i);
+                                overridePendingTransition(0, 0);
+                                finish();
+                            }
+                        });
+                        AlertDialog dialog3 = builder3.create();
+                        dialog3.show();
+                    }
+                    else if (f_r_2.category==6900) {
+                        book_save(b_s, f_r_2.category);
+
+                        p1.f_5900+=1;
+
+                        f_r_2.level=0;
+                        f_r_2.category=0;
+                        f_r_2.day=0;
+                        f_r_2.water=0;
+
+                        AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                        builder3.setTitle("씨앗이 다 자라서 "+ f_5900.name+"이 피었습니다!");
+                        builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent i = new Intent(Raise.this, Raise.class);
+                                startActivity(i);
+                                overridePendingTransition(0, 0);
+                                finish();
+                            }
+                        });
+                        AlertDialog dialog3 = builder3.create();
+                        dialog3.show();
+                    }
+                    else if (f_r_2.category==6901) {
+                        book_save(b_s, f_r_2.category);
+
+                        p1.f_5901+=1;
+
+                        f_r_2.level=0;
+                        f_r_2.category=0;
+                        f_r_2.day=0;
+                        f_r_2.water=0;
+
+                        AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                        builder3.setTitle("씨앗이 다 자라서 "+ f_5901.name+"이 피었습니다!");
+                        builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent i = new Intent(Raise.this, Raise.class);
+                                startActivity(i);
+                                overridePendingTransition(0, 0);
+                                finish();
+                            }
+                        });
+                        AlertDialog dialog3 = builder3.create();
+                        dialog3.show();
+                    }
+                    else if (f_r_2.category==6902) {
+                        book_save(b_s, f_r_2.category);
+
+                        p1.f_5902+=1;
+
+                        f_r_2.level=0;
+                        f_r_2.category=0;
+                        f_r_2.day=0;
+                        f_r_2.water=0;
+
+                        AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                        builder3.setTitle("씨앗이 다 자라서 "+ f_5902.name+"이 피었습니다!");
+                        builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent i = new Intent(Raise.this, Raise.class);
+                                startActivity(i);
+                                overridePendingTransition(0, 0);
+                                finish();
+                            }
+                        });
+                        AlertDialog dialog3 = builder3.create();
+                        dialog3.show();
+                    }
+                    else if (f_r_2.category==6903) {
+                        book_save(b_s, f_r_2.category);
+
+                        p1.f_5903+=1;
+
+                        f_r_2.level=0;
+                        f_r_2.category=0;
+                        f_r_2.day=0;
+                        f_r_2.water=0;
+
+                        AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                        builder3.setTitle("씨앗이 다 자라서 "+ f_5903.name+"이 피었습니다!");
+                        builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent i = new Intent(Raise.this, Raise.class);
+                                startActivity(i);
+                                overridePendingTransition(0, 0);
+                                finish();
+                            }
+                        });
+                        AlertDialog dialog3 = builder3.create();
+                        dialog3.show();
+                    }
+                }
+                // level3 다 자람
+
+                else if (f_r_2.level==4) {
+                    f_r_2.level=0;
+                    f_r_2.category=0;
+                    f_r_2.day=0;
+                    f_r_2.water=0;
+
+                    AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                    builder3.setTitle("물을 제때 주지 않아 말라비틀어졌습니다.");
+                    builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent i = new Intent(Raise.this, Raise.class);
+                            startActivity(i);
+                            overridePendingTransition(0, 0);
+                            finish();
+                        }
+                    });
+                    AlertDialog dialog3 = builder3.create();
+                    dialog3.show();
+                }
+                // level4 마름
+
+                else if (f_r_2.level==5) {
+                    f_r_2.level=0;
+                    f_r_2.category=0;
+                    f_r_2.day=0;
+                    f_r_2.water=0;
+
+                    AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                    builder3.setTitle("눈이 내림으로 인해 꽃이 얼어붙었습니다.");
+                    builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent i = new Intent(Raise.this, Raise.class);
+                            startActivity(i);
+                            overridePendingTransition(0, 0);
+                            finish();
+                        }
+                    });
+                    AlertDialog dialog3 = builder3.create();
+                    dialog3.show();
+                }
+                // level5 얼어붙음
+
+                else if (f_r_2.level==6) {
+                    f_r_2.level=0;
+                    f_r_2.category=0;
+                    f_r_2.day=0;
+                    f_r_2.water=0;
+
+                    AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                    builder3.setTitle("가뭄으로 인하여 꽃이 말라비틀어졌습니다.");
+                    builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent i = new Intent(Raise.this, Raise.class);
+                            startActivity(i);
+                            overridePendingTransition(0, 0);
+                            finish();
+                        }
+                    });
+                    AlertDialog dialog3 = builder3.create();
+                    dialog3.show();
+                }
+                // level6 가뭄
+
+            }
+        });
+        // pot2 터치 이벤트
+
         ImageView iv_p3 = (ImageView) findViewById(R.id.image_pot3);
         iv_p3.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -986,9 +1473,2058 @@ public class Raise extends AppCompatActivity {
                 AlertDialog dialog = builder.create();
                 dialog.show();
             }
+            else if (f_r_3.lock==0) {
+                ImageView iv_p3 = (ImageView)findViewById(R.id.image_pot3);
+                iv_p3.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v) {
+
+                        if (f_r_3.level==0) {
+                            AlertDialog.Builder builder = new AlertDialog.Builder(Raise.this);
+                            builder.setTitle("화분 속이 비어있습니다.\n어떤 흙을 채우시겠습니까?");
+                            builder.setNegativeButton("흙", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    if (p1.s_3000>0) {
+                                        p1.s_3000-=1;
+                                        f_r_3.level=1;
+
+                                        Intent i = new Intent(Raise.this, Raise.class);
+                                        startActivity(i);
+                                        overridePendingTransition(0, 0);
+                                        finish();
+
+                                        Toast.makeText(getApplicationContext(),  "흙으로 화분을 채웠습니다.", Toast.LENGTH_LONG).show();
+                                    }
+                                    else {
+                                        AlertDialog.Builder builder2 = new AlertDialog.Builder(Raise.this);
+                                        builder2.setTitle("흙이 없습니다.");
+                                        builder2.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                dialog.dismiss();
+                                            }
+                                        });
+                                        AlertDialog dialog2 = builder2.create();
+                                        dialog2.show();
+                                    }
+                                }
+                            });
+                            builder.setPositiveButton("비옥한 흙", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    if (p1.s_3001>0) {
+                                        p1.s_3001-=1;
+                                        f_r_3.level=1;
+                                        f_r_3.day+=1;
+
+                                        Intent i = new Intent(Raise.this, Raise.class);
+                                        startActivity(i);
+                                        overridePendingTransition(0, 0);
+                                        finish();
+
+                                        Toast.makeText(getApplicationContext(),  "비옥한 흙으로 화분을 채웠습니다.", Toast.LENGTH_LONG).show();
+                                    }
+                                    else {
+                                        AlertDialog.Builder builder4 = new AlertDialog.Builder(Raise.this);
+                                        builder4.setTitle("비옥한 흙이 없습니다.");
+                                        builder4.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                dialog.dismiss();
+                                            }
+                                        });
+                                        AlertDialog dialog4 = builder4.create();
+                                        dialog4.show();
+                                    }
+                                }
+                            });
+                            AlertDialog dialog = builder.create();
+                            dialog.show();
+                        }
+                        // level0 흙
+
+                        else if (f_r_3.level==1) {
+                            if (p1.s_6000==0&&p1.s_6001==0&&p1.s_6002==0&&p1.s_6003==0&&p1.s_6004==0&&p1.s_6005==0&&p1.s_6006==0&&p1.s_6007==0&&p1.s_6900==0&&p1.s_6901==0&&p1.s_6902==0&&p1.s_6903==0) {
+                                AlertDialog.Builder builder = new AlertDialog.Builder(Raise.this);
+                                builder.setTitle("씨앗이 하나도 없습니다.");
+                                builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.dismiss();
+                                    }
+                                });
+                                AlertDialog dialog = builder.create();
+                                dialog.show();
+                            }
+                            else {
+                                before_pot = 3;
+
+                                Intent i = new Intent(Raise.this, Seed_Choice.class);
+                                startActivity(i);
+                                overridePendingTransition(0, 0);
+                                finish();
+                            }
+                        }
+                        // level1 씨앗
+
+                        else if (f_r_3.level==2) {
+                            if (f_r_3.water==1) {
+                                AlertDialog.Builder builder = new AlertDialog.Builder(Raise.this);
+                                builder.setTitle("충분히 축축합니다.");
+                                builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.dismiss();
+                                    }
+                                });
+                                AlertDialog dialog = builder.create();
+                                dialog.show();
+                            }
+                            else if (f_r_3.water<=0) {
+                                AlertDialog.Builder builder = new AlertDialog.Builder(Raise.this);
+                                builder.setTitle("물기가 없어 보입니다.\n물을 주시겠습니까?");
+                                builder.setNegativeButton("예", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        if (p1.w_2000>=1) {
+                                            p1.w_2000-=1;
+                                            f_r_3.water+=1;
+
+                                            Intent i = new Intent(Raise.this, Raise.class);
+                                            startActivity(i);
+                                            overridePendingTransition(0, 0);
+                                            finish();
+
+                                            Toast.makeText(getApplicationContext(),  "화분에 물을 주었습니다.", Toast.LENGTH_LONG).show();
+                                        }
+                                        else {
+                                            AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                                            builder3.setTitle("물이 없습니다.");
+                                            builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                                public void onClick(DialogInterface dialog, int which) {
+                                                    dialog.dismiss();
+                                                }
+                                            });
+                                            AlertDialog dialog3 = builder3.create();
+                                            dialog3.show();
+                                        }
+                                    }
+                                });
+                                builder.setPositiveButton("아니오", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.dismiss();
+                                    }
+                                });
+                                AlertDialog dialog = builder.create();
+                                dialog.show();
+                            }
+                        }
+                        //level2 raise
+
+                        else if (f_r_3.level==3) {
+                            if (f_r_3.category==6000) {
+                                book_save(b_s, f_r_3.category);
+
+                                p1.f_5000+=1;
+
+                                f_r_3.level=0;
+                                f_r_3.category=0;
+                                f_r_3.day=0;
+                                f_r_3.water=0;
+
+                                AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                                builder3.setTitle("씨앗이 다 자라서 "+ f_5000.name+"이 피었습니다!");
+                                builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent i = new Intent(Raise.this, Raise.class);
+                                        startActivity(i);
+                                        overridePendingTransition(0, 0);
+                                        finish();
+                                    }
+                                });
+                                AlertDialog dialog3 = builder3.create();
+                                dialog3.show();
+                            }
+                            else if (f_r_3.category==6001) {
+                                book_save(b_s, f_r_3.category);
+
+                                p1.f_5001+=1;
+
+                                f_r_3.level=0;
+                                f_r_3.category=0;
+                                f_r_3.day=0;
+                                f_r_3.water=0;
+
+                                AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                                builder3.setTitle("씨앗이 다 자라서 "+ f_5001.name+"이 피었습니다!");
+                                builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent i = new Intent(Raise.this, Raise.class);
+                                        startActivity(i);
+                                        overridePendingTransition(0, 0);
+                                        finish();
+                                    }
+                                });
+                                AlertDialog dialog3 = builder3.create();
+                                dialog3.show();
+                            }
+                            else if (f_r_3.category==6002) {
+                                book_save(b_s, f_r_3.category);
+
+                                p1.f_5002+=1;
+
+                                f_r_3.level=0;
+                                f_r_3.category=0;
+                                f_r_3.day=0;
+                                f_r_3.water=0;
+
+                                AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                                builder3.setTitle("씨앗이 다 자라서 "+ f_5002.name+"이 피었습니다!");
+                                builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent i = new Intent(Raise.this, Raise.class);
+                                        startActivity(i);
+                                        overridePendingTransition(0, 0);
+                                        finish();
+                                    }
+                                });
+                                AlertDialog dialog3 = builder3.create();
+                                dialog3.show();
+                            }
+                            else if (f_r_3.category==6003) {
+                                book_save(b_s, f_r_3.category);
+
+                                p1.f_5003+=1;
+
+                                f_r_3.level=0;
+                                f_r_3.category=0;
+                                f_r_3.day=0;
+                                f_r_3.water=0;
+
+                                AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                                builder3.setTitle("씨앗이 다 자라서 "+ f_5003.name+"이 피었습니다!");
+                                builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent i = new Intent(Raise.this, Raise.class);
+                                        startActivity(i);
+                                        overridePendingTransition(0, 0);
+                                        finish();
+                                    }
+                                });
+                                AlertDialog dialog3 = builder3.create();
+                                dialog3.show();
+                            }
+                            else if (f_r_3.category==6004) {
+                                book_save(b_s, f_r_3.category);
+
+                                p1.f_5004+=1;
+
+                                f_r_3.level=0;
+                                f_r_3.category=0;
+                                f_r_3.day=0;
+                                f_r_3.water=0;
+
+                                AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                                builder3.setTitle("씨앗이 다 자라서 "+ f_5004.name+"이 피었습니다!");
+                                builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent i = new Intent(Raise.this, Raise.class);
+                                        startActivity(i);
+                                        overridePendingTransition(0, 0);
+                                        finish();
+                                    }
+                                });
+                                AlertDialog dialog3 = builder3.create();
+                                dialog3.show();
+                            }
+                            else if (f_r_3.category==6005) {
+                                book_save(b_s, f_r_3.category);
+
+                                p1.f_5005+=1;
+
+                                f_r_3.level=0;
+                                f_r_3.category=0;
+                                f_r_3.day=0;
+                                f_r_3.water=0;
+
+                                AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                                builder3.setTitle("씨앗이 다 자라서 "+ f_5005.name+"이 피었습니다!");
+                                builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent i = new Intent(Raise.this, Raise.class);
+                                        startActivity(i);
+                                        overridePendingTransition(0, 0);
+                                        finish();
+                                    }
+                                });
+                                AlertDialog dialog3 = builder3.create();
+                                dialog3.show();
+                            }
+                            else if (f_r_3.category==6006) {
+                                book_save(b_s, f_r_3.category);
+
+                                p1.f_5006+=1;
+
+                                f_r_3.level=0;
+                                f_r_3.category=0;
+                                f_r_3.day=0;
+                                f_r_3.water=0;
+
+                                AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                                builder3.setTitle("씨앗이 다 자라서 "+ f_5006.name+"이 피었습니다!");
+                                builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent i = new Intent(Raise.this, Raise.class);
+                                        startActivity(i);
+                                        overridePendingTransition(0, 0);
+                                        finish();
+                                    }
+                                });
+                                AlertDialog dialog3 = builder3.create();
+                                dialog3.show();
+                            }
+                            else if (f_r_3.category==6007) {
+                                book_save(b_s, f_r_3.category);
+
+                                p1.f_5007+=1;
+
+                                f_r_3.level=0;
+                                f_r_3.category=0;
+                                f_r_3.day=0;
+                                f_r_3.water=0;
+
+                                AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                                builder3.setTitle("씨앗이 다 자라서 "+ f_5007.name+"이 피었습니다!");
+                                builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent i = new Intent(Raise.this, Raise.class);
+                                        startActivity(i);
+                                        overridePendingTransition(0, 0);
+                                        finish();
+                                    }
+                                });
+                                AlertDialog dialog3 = builder3.create();
+                                dialog3.show();
+                            }
+                            else if (f_r_3.category==6900) {
+                                book_save(b_s, f_r_3.category);
+
+                                p1.f_5900+=1;
+
+                                f_r_3.level=0;
+                                f_r_3.category=0;
+                                f_r_3.day=0;
+                                f_r_3.water=0;
+
+                                AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                                builder3.setTitle("씨앗이 다 자라서 "+ f_5900.name+"이 피었습니다!");
+                                builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent i = new Intent(Raise.this, Raise.class);
+                                        startActivity(i);
+                                        overridePendingTransition(0, 0);
+                                        finish();
+                                    }
+                                });
+                                AlertDialog dialog3 = builder3.create();
+                                dialog3.show();
+                            }
+                            else if (f_r_3.category==6901) {
+                                book_save(b_s, f_r_3.category);
+
+                                p1.f_5901+=1;
+
+                                f_r_3.level=0;
+                                f_r_3.category=0;
+                                f_r_3.day=0;
+                                f_r_3.water=0;
+
+                                AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                                builder3.setTitle("씨앗이 다 자라서 "+ f_5901.name+"이 피었습니다!");
+                                builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent i = new Intent(Raise.this, Raise.class);
+                                        startActivity(i);
+                                        overridePendingTransition(0, 0);
+                                        finish();
+                                    }
+                                });
+                                AlertDialog dialog3 = builder3.create();
+                                dialog3.show();
+                            }
+                            else if (f_r_3.category==6902) {
+                                book_save(b_s, f_r_3.category);
+
+                                p1.f_5902+=1;
+
+                                f_r_3.level=0;
+                                f_r_3.category=0;
+                                f_r_3.day=0;
+                                f_r_3.water=0;
+
+                                AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                                builder3.setTitle("씨앗이 다 자라서 "+ f_5902.name+"이 피었습니다!");
+                                builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent i = new Intent(Raise.this, Raise.class);
+                                        startActivity(i);
+                                        overridePendingTransition(0, 0);
+                                        finish();
+                                    }
+                                });
+                                AlertDialog dialog3 = builder3.create();
+                                dialog3.show();
+                            }
+                            else if (f_r_3.category==6903) {
+                                book_save(b_s, f_r_3.category);
+
+                                p1.f_5903+=1;
+
+                                f_r_3.level=0;
+                                f_r_3.category=0;
+                                f_r_3.day=0;
+                                f_r_3.water=0;
+
+                                AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                                builder3.setTitle("씨앗이 다 자라서 "+ f_5903.name+"이 피었습니다!");
+                                builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent i = new Intent(Raise.this, Raise.class);
+                                        startActivity(i);
+                                        overridePendingTransition(0, 0);
+                                        finish();
+                                    }
+                                });
+                                AlertDialog dialog3 = builder3.create();
+                                dialog3.show();
+                            }
+                        }
+                        // level3 다 자람
+
+                        else if (f_r_3.level==4) {
+                            f_r_3.level=0;
+                            f_r_3.category=0;
+                            f_r_3.day=0;
+                            f_r_3.water=0;
+
+                            AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                            builder3.setTitle("물을 제때 주지 않아 말라비틀어졌습니다.");
+                            builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Intent i = new Intent(Raise.this, Raise.class);
+                                    startActivity(i);
+                                    overridePendingTransition(0, 0);
+                                    finish();
+                                }
+                            });
+                            AlertDialog dialog3 = builder3.create();
+                            dialog3.show();
+                        }
+                        // level4 마름
+
+                        else if (f_r_3.level==5) {
+                            f_r_3.level=0;
+                            f_r_3.category=0;
+                            f_r_3.day=0;
+                            f_r_3.water=0;
+
+                            AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                            builder3.setTitle("눈이 내림으로 인해 꽃이 얼어붙었습니다.");
+                            builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Intent i = new Intent(Raise.this, Raise.class);
+                                    startActivity(i);
+                                    overridePendingTransition(0, 0);
+                                    finish();
+                                }
+                            });
+                            AlertDialog dialog3 = builder3.create();
+                            dialog3.show();
+                        }
+                        // level5 얼어붙음
+
+                        else if (f_r_3.level==6) {
+                            f_r_3.level=0;
+                            f_r_3.category=0;
+                            f_r_3.day=0;
+                            f_r_3.water=0;
+
+                            AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                            builder3.setTitle("가뭄으로 인하여 꽃이 말라비틀어졌습니다.");
+                            builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Intent i = new Intent(Raise.this, Raise.class);
+                                    startActivity(i);
+                                    overridePendingTransition(0, 0);
+                                    finish();
+                                }
+                            });
+                            AlertDialog dialog3 = builder3.create();
+                            dialog3.show();
+                        }
+                        // level6 가뭄
+                    }
+                });
+            }
             }
         });
         // pot3 터치 이벤트
+
+        ImageView iv_p4 = (ImageView) findViewById(R.id.image_pot4);
+        iv_p4.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if (f_r_4.lock==1) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(Raise.this);
+                    builder.setTitle("잠금을 30000원에 해제하시겠습니까?");
+                    builder.setNegativeButton("예", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            if (p1.money>=30000) {
+                                p1.money-=30000;
+                                f_r_4.lock=0;
+
+                                Intent i = new Intent(Raise.this, Raise.class);
+                                startActivity(i);
+                                overridePendingTransition(0, 0);
+                                finish();
+
+                                Toast.makeText(getApplicationContext(),  "잠금을 해제하였습니다.", Toast.LENGTH_LONG).show();
+                            } else {
+                                Toast.makeText(getApplicationContext(), "돈이 부족합니다.", Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    });
+                    builder.setPositiveButton("아니오", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                }
+                else if (f_r_4.lock==0) {
+                    ImageView iv_p4 = (ImageView)findViewById(R.id.image_pot4);
+                    iv_p4.setOnClickListener(new View.OnClickListener() {
+                        public void onClick(View v) {
+
+                            if (f_r_4.level==0) {
+                                AlertDialog.Builder builder = new AlertDialog.Builder(Raise.this);
+                                builder.setTitle("화분 속이 비어있습니다.\n어떤 흙을 채우시겠습니까?");
+                                builder.setNegativeButton("흙", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        if (p1.s_3000>0) {
+                                            p1.s_3000-=1;
+                                            f_r_4.level=1;
+
+                                            Intent i = new Intent(Raise.this, Raise.class);
+                                            startActivity(i);
+                                            overridePendingTransition(0, 0);
+                                            finish();
+
+                                            Toast.makeText(getApplicationContext(),  "흙으로 화분을 채웠습니다.", Toast.LENGTH_LONG).show();
+                                        }
+                                        else {
+                                            AlertDialog.Builder builder2 = new AlertDialog.Builder(Raise.this);
+                                            builder2.setTitle("흙이 없습니다.");
+                                            builder2.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                                public void onClick(DialogInterface dialog, int which) {
+                                                    dialog.dismiss();
+                                                }
+                                            });
+                                            AlertDialog dialog2 = builder2.create();
+                                            dialog2.show();
+                                        }
+                                    }
+                                });
+                                builder.setPositiveButton("비옥한 흙", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        if (p1.s_3001>0) {
+                                            p1.s_3001-=1;
+                                            f_r_4.level=1;
+                                            f_r_4.day+=1;
+
+                                            Intent i = new Intent(Raise.this, Raise.class);
+                                            startActivity(i);
+                                            overridePendingTransition(0, 0);
+                                            finish();
+
+                                            Toast.makeText(getApplicationContext(),  "비옥한 흙으로 화분을 채웠습니다.", Toast.LENGTH_LONG).show();
+                                        }
+                                        else {
+                                            AlertDialog.Builder builder4 = new AlertDialog.Builder(Raise.this);
+                                            builder4.setTitle("비옥한 흙이 없습니다.");
+                                            builder4.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                                public void onClick(DialogInterface dialog, int which) {
+                                                    dialog.dismiss();
+                                                }
+                                            });
+                                            AlertDialog dialog4 = builder4.create();
+                                            dialog4.show();
+                                        }
+                                    }
+                                });
+                                AlertDialog dialog = builder.create();
+                                dialog.show();
+                            }
+                            // level0 흙
+
+                            else if (f_r_4.level==1) {
+                                if (p1.s_6000==0&&p1.s_6001==0&&p1.s_6002==0&&p1.s_6003==0&&p1.s_6004==0&&p1.s_6005==0&&p1.s_6006==0&&p1.s_6007==0&&p1.s_6900==0&&p1.s_6901==0&&p1.s_6902==0&&p1.s_6903==0) {
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(Raise.this);
+                                    builder.setTitle("씨앗이 하나도 없습니다.");
+                                    builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            dialog.dismiss();
+                                        }
+                                    });
+                                    AlertDialog dialog = builder.create();
+                                    dialog.show();
+                                }
+                                else {
+                                    before_pot = 4;
+
+                                    Intent i = new Intent(Raise.this, Seed_Choice.class);
+                                    startActivity(i);
+                                    overridePendingTransition(0, 0);
+                                    finish();
+                                }
+                            }
+                            // level1 씨앗
+
+                            else if (f_r_4.level==2) {
+                                if (f_r_4.water==1) {
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(Raise.this);
+                                    builder.setTitle("충분히 축축합니다.");
+                                    builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            dialog.dismiss();
+                                        }
+                                    });
+                                    AlertDialog dialog = builder.create();
+                                    dialog.show();
+                                }
+                                else if (f_r_4.water<=0) {
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(Raise.this);
+                                    builder.setTitle("물기가 없어 보입니다.\n물을 주시겠습니까?");
+                                    builder.setNegativeButton("예", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            if (p1.w_2000>=1) {
+                                                p1.w_2000-=1;
+                                                f_r_4.water+=1;
+
+                                                Intent i = new Intent(Raise.this, Raise.class);
+                                                startActivity(i);
+                                                overridePendingTransition(0, 0);
+                                                finish();
+
+                                                Toast.makeText(getApplicationContext(),  "화분에 물을 주었습니다.", Toast.LENGTH_LONG).show();
+                                            }
+                                            else {
+                                                AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                                                builder3.setTitle("물이 없습니다.");
+                                                builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                                    public void onClick(DialogInterface dialog, int which) {
+                                                        dialog.dismiss();
+                                                    }
+                                                });
+                                                AlertDialog dialog3 = builder3.create();
+                                                dialog3.show();
+                                            }
+                                        }
+                                    });
+                                    builder.setPositiveButton("아니오", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            dialog.dismiss();
+                                        }
+                                    });
+                                    AlertDialog dialog = builder.create();
+                                    dialog.show();
+                                }
+                            }
+                            //level2 raise
+
+                            else if (f_r_4.level==3) {
+                                if (f_r_4.category==6000) {
+                                    book_save(b_s, f_r_4.category);
+
+                                    p1.f_5000+=1;
+
+                                    f_r_4.level=0;
+                                    f_r_4.category=0;
+                                    f_r_4.day=0;
+                                    f_r_4.water=0;
+
+                                    AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                                    builder3.setTitle("씨앗이 다 자라서 "+ f_5000.name+"이 피었습니다!");
+                                    builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Intent i = new Intent(Raise.this, Raise.class);
+                                            startActivity(i);
+                                            overridePendingTransition(0, 0);
+                                            finish();
+                                        }
+                                    });
+                                    AlertDialog dialog3 = builder3.create();
+                                    dialog3.show();
+                                }
+                                else if (f_r_4.category==6001) {
+                                    book_save(b_s, f_r_4.category);
+
+                                    p1.f_5001+=1;
+
+                                    f_r_4.level=0;
+                                    f_r_4.category=0;
+                                    f_r_4.day=0;
+                                    f_r_4.water=0;
+
+                                    AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                                    builder3.setTitle("씨앗이 다 자라서 "+ f_5001.name+"이 피었습니다!");
+                                    builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Intent i = new Intent(Raise.this, Raise.class);
+                                            startActivity(i);
+                                            overridePendingTransition(0, 0);
+                                            finish();
+                                        }
+                                    });
+                                    AlertDialog dialog3 = builder3.create();
+                                    dialog3.show();
+                                }
+                                else if (f_r_4.category==6002) {
+                                    book_save(b_s, f_r_4.category);
+
+                                    p1.f_5002+=1;
+
+                                    f_r_4.level=0;
+                                    f_r_4.category=0;
+                                    f_r_4.day=0;
+                                    f_r_4.water=0;
+
+                                    AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                                    builder3.setTitle("씨앗이 다 자라서 "+ f_5002.name+"이 피었습니다!");
+                                    builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Intent i = new Intent(Raise.this, Raise.class);
+                                            startActivity(i);
+                                            overridePendingTransition(0, 0);
+                                            finish();
+                                        }
+                                    });
+                                    AlertDialog dialog3 = builder3.create();
+                                    dialog3.show();
+                                }
+                                else if (f_r_4.category==6003) {
+                                    book_save(b_s, f_r_4.category);
+
+                                    p1.f_5003+=1;
+
+                                    f_r_4.level=0;
+                                    f_r_4.category=0;
+                                    f_r_4.day=0;
+                                    f_r_4.water=0;
+
+                                    AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                                    builder3.setTitle("씨앗이 다 자라서 "+ f_5003.name+"이 피었습니다!");
+                                    builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Intent i = new Intent(Raise.this, Raise.class);
+                                            startActivity(i);
+                                            overridePendingTransition(0, 0);
+                                            finish();
+                                        }
+                                    });
+                                    AlertDialog dialog3 = builder3.create();
+                                    dialog3.show();
+                                }
+                                else if (f_r_4.category==6004) {
+                                    book_save(b_s, f_r_4.category);
+
+                                    p1.f_5004+=1;
+
+                                    f_r_4.level=0;
+                                    f_r_4.category=0;
+                                    f_r_4.day=0;
+                                    f_r_4.water=0;
+
+                                    AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                                    builder3.setTitle("씨앗이 다 자라서 "+ f_5004.name+"이 피었습니다!");
+                                    builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Intent i = new Intent(Raise.this, Raise.class);
+                                            startActivity(i);
+                                            overridePendingTransition(0, 0);
+                                            finish();
+                                        }
+                                    });
+                                    AlertDialog dialog3 = builder3.create();
+                                    dialog3.show();
+                                }
+                                else if (f_r_4.category==6005) {
+                                    book_save(b_s, f_r_4.category);
+
+                                    p1.f_5005+=1;
+
+                                    f_r_4.level=0;
+                                    f_r_4.category=0;
+                                    f_r_4.day=0;
+                                    f_r_4.water=0;
+
+                                    AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                                    builder3.setTitle("씨앗이 다 자라서 "+ f_5005.name+"이 피었습니다!");
+                                    builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Intent i = new Intent(Raise.this, Raise.class);
+                                            startActivity(i);
+                                            overridePendingTransition(0, 0);
+                                            finish();
+                                        }
+                                    });
+                                    AlertDialog dialog3 = builder3.create();
+                                    dialog3.show();
+                                }
+                                else if (f_r_4.category==6006) {
+                                    book_save(b_s, f_r_4.category);
+
+                                    p1.f_5006+=1;
+
+                                    f_r_4.level=0;
+                                    f_r_4.category=0;
+                                    f_r_4.day=0;
+                                    f_r_4.water=0;
+
+                                    AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                                    builder3.setTitle("씨앗이 다 자라서 "+ f_5006.name+"이 피었습니다!");
+                                    builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Intent i = new Intent(Raise.this, Raise.class);
+                                            startActivity(i);
+                                            overridePendingTransition(0, 0);
+                                            finish();
+                                        }
+                                    });
+                                    AlertDialog dialog3 = builder3.create();
+                                    dialog3.show();
+                                }
+                                else if (f_r_4.category==6007) {
+                                    book_save(b_s, f_r_4.category);
+
+                                    p1.f_5007+=1;
+
+                                    f_r_4.level=0;
+                                    f_r_4.category=0;
+                                    f_r_4.day=0;
+                                    f_r_4.water=0;
+
+                                    AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                                    builder3.setTitle("씨앗이 다 자라서 "+ f_5007.name+"이 피었습니다!");
+                                    builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Intent i = new Intent(Raise.this, Raise.class);
+                                            startActivity(i);
+                                            overridePendingTransition(0, 0);
+                                            finish();
+                                        }
+                                    });
+                                    AlertDialog dialog3 = builder3.create();
+                                    dialog3.show();
+                                }
+                                else if (f_r_4.category==6900) {
+                                    book_save(b_s, f_r_4.category);
+
+                                    p1.f_5900+=1;
+
+                                    f_r_4.level=0;
+                                    f_r_4.category=0;
+                                    f_r_4.day=0;
+                                    f_r_4.water=0;
+
+                                    AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                                    builder3.setTitle("씨앗이 다 자라서 "+ f_5900.name+"이 피었습니다!");
+                                    builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Intent i = new Intent(Raise.this, Raise.class);
+                                            startActivity(i);
+                                            overridePendingTransition(0, 0);
+                                            finish();
+                                        }
+                                    });
+                                    AlertDialog dialog3 = builder3.create();
+                                    dialog3.show();
+                                }
+                                else if (f_r_4.category==6901) {
+                                    book_save(b_s, f_r_4.category);
+
+                                    p1.f_5901+=1;
+
+                                    f_r_4.level=0;
+                                    f_r_4.category=0;
+                                    f_r_4.day=0;
+                                    f_r_4.water=0;
+
+                                    AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                                    builder3.setTitle("씨앗이 다 자라서 "+ f_5901.name+"이 피었습니다!");
+                                    builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Intent i = new Intent(Raise.this, Raise.class);
+                                            startActivity(i);
+                                            overridePendingTransition(0, 0);
+                                            finish();
+                                        }
+                                    });
+                                    AlertDialog dialog3 = builder3.create();
+                                    dialog3.show();
+                                }
+                                else if (f_r_4.category==6902) {
+                                    book_save(b_s, f_r_4.category);
+
+                                    p1.f_5902+=1;
+
+                                    f_r_4.level=0;
+                                    f_r_4.category=0;
+                                    f_r_4.day=0;
+                                    f_r_4.water=0;
+
+                                    AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                                    builder3.setTitle("씨앗이 다 자라서 "+ f_5902.name+"이 피었습니다!");
+                                    builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Intent i = new Intent(Raise.this, Raise.class);
+                                            startActivity(i);
+                                            overridePendingTransition(0, 0);
+                                            finish();
+                                        }
+                                    });
+                                    AlertDialog dialog3 = builder3.create();
+                                    dialog3.show();
+                                }
+                                else if (f_r_4.category==6903) {
+                                    book_save(b_s, f_r_4.category);
+
+                                    p1.f_5903+=1;
+
+                                    f_r_4.level=0;
+                                    f_r_4.category=0;
+                                    f_r_4.day=0;
+                                    f_r_4.water=0;
+
+                                    AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                                    builder3.setTitle("씨앗이 다 자라서 "+ f_5903.name+"이 피었습니다!");
+                                    builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Intent i = new Intent(Raise.this, Raise.class);
+                                            startActivity(i);
+                                            overridePendingTransition(0, 0);
+                                            finish();
+                                        }
+                                    });
+                                    AlertDialog dialog3 = builder3.create();
+                                    dialog3.show();
+                                }
+                            }
+                            // level3 다 자람
+
+                            else if (f_r_4.level==4) {
+                                f_r_4.level=0;
+                                f_r_4.category=0;
+                                f_r_4.day=0;
+                                f_r_4.water=0;
+
+                                AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                                builder3.setTitle("물을 제때 주지 않아 말라비틀어졌습니다.");
+                                builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent i = new Intent(Raise.this, Raise.class);
+                                        startActivity(i);
+                                        overridePendingTransition(0, 0);
+                                        finish();
+                                    }
+                                });
+                                AlertDialog dialog3 = builder3.create();
+                                dialog3.show();
+                            }
+                            // level4 마름
+
+                            else if (f_r_4.level==5) {
+                                f_r_4.level=0;
+                                f_r_4.category=0;
+                                f_r_4.day=0;
+                                f_r_4.water=0;
+
+                                AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                                builder3.setTitle("눈이 내림으로 인해 꽃이 얼어붙었습니다.");
+                                builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent i = new Intent(Raise.this, Raise.class);
+                                        startActivity(i);
+                                        overridePendingTransition(0, 0);
+                                        finish();
+                                    }
+                                });
+                                AlertDialog dialog3 = builder3.create();
+                                dialog3.show();
+                            }
+                            // level5 얼어붙음
+
+                            else if (f_r_4.level==6) {
+                                f_r_4.level=0;
+                                f_r_4.category=0;
+                                f_r_4.day=0;
+                                f_r_4.water=0;
+
+                                AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                                builder3.setTitle("가뭄으로 인하여 꽃이 말라비틀어졌습니다.");
+                                builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent i = new Intent(Raise.this, Raise.class);
+                                        startActivity(i);
+                                        overridePendingTransition(0, 0);
+                                        finish();
+                                    }
+                                });
+                                AlertDialog dialog3 = builder3.create();
+                                dialog3.show();
+                            }
+                            // level6 가뭄
+                        }
+                    });
+                }
+            }
+        });
+        // pot4 터치 이벤트
+
+        ImageView iv_p5 = (ImageView) findViewById(R.id.image_pot5);
+        iv_p5.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if (f_r_5.lock==1) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(Raise.this);
+                    builder.setTitle("잠금을 50000원에 해제하시겠습니까?");
+                    builder.setNegativeButton("예", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            if (p1.money>=50000) {
+                                p1.money-=50000;
+                                f_r_5.lock=0;
+
+                                Intent i = new Intent(Raise.this, Raise.class);
+                                startActivity(i);
+                                overridePendingTransition(0, 0);
+                                finish();
+
+                                Toast.makeText(getApplicationContext(),  "잠금을 해제하였습니다.", Toast.LENGTH_LONG).show();
+                            } else {
+                                Toast.makeText(getApplicationContext(), "돈이 부족합니다.", Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    });
+                    builder.setPositiveButton("아니오", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                }
+                else if (f_r_5.lock==0) {
+                    ImageView iv_p5 = (ImageView)findViewById(R.id.image_pot5);
+                    iv_p5.setOnClickListener(new View.OnClickListener() {
+                        public void onClick(View v) {
+
+                            if (f_r_5.level==0) {
+                                AlertDialog.Builder builder = new AlertDialog.Builder(Raise.this);
+                                builder.setTitle("화분 속이 비어있습니다.\n어떤 흙을 채우시겠습니까?");
+                                builder.setNegativeButton("흙", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        if (p1.s_3000>0) {
+                                            p1.s_3000-=1;
+                                            f_r_5.level=1;
+
+                                            Intent i = new Intent(Raise.this, Raise.class);
+                                            startActivity(i);
+                                            overridePendingTransition(0, 0);
+                                            finish();
+
+                                            Toast.makeText(getApplicationContext(),  "흙으로 화분을 채웠습니다.", Toast.LENGTH_LONG).show();
+                                        }
+                                        else {
+                                            AlertDialog.Builder builder2 = new AlertDialog.Builder(Raise.this);
+                                            builder2.setTitle("흙이 없습니다.");
+                                            builder2.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                                public void onClick(DialogInterface dialog, int which) {
+                                                    dialog.dismiss();
+                                                }
+                                            });
+                                            AlertDialog dialog2 = builder2.create();
+                                            dialog2.show();
+                                        }
+                                    }
+                                });
+                                builder.setPositiveButton("비옥한 흙", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        if (p1.s_3001>0) {
+                                            p1.s_3001-=1;
+                                            f_r_5.level=1;
+                                            f_r_5.day+=1;
+
+                                            Intent i = new Intent(Raise.this, Raise.class);
+                                            startActivity(i);
+                                            overridePendingTransition(0, 0);
+                                            finish();
+
+                                            Toast.makeText(getApplicationContext(),  "비옥한 흙으로 화분을 채웠습니다.", Toast.LENGTH_LONG).show();
+                                        }
+                                        else {
+                                            AlertDialog.Builder builder4 = new AlertDialog.Builder(Raise.this);
+                                            builder4.setTitle("비옥한 흙이 없습니다.");
+                                            builder4.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                                public void onClick(DialogInterface dialog, int which) {
+                                                    dialog.dismiss();
+                                                }
+                                            });
+                                            AlertDialog dialog4 = builder4.create();
+                                            dialog4.show();
+                                        }
+                                    }
+                                });
+                                AlertDialog dialog = builder.create();
+                                dialog.show();
+                            }
+                            // level0 흙
+
+                            else if (f_r_5.level==1) {
+                                if (p1.s_6000==0&&p1.s_6001==0&&p1.s_6002==0&&p1.s_6003==0&&p1.s_6004==0&&p1.s_6005==0&&p1.s_6006==0&&p1.s_6007==0&&p1.s_6900==0&&p1.s_6901==0&&p1.s_6902==0&&p1.s_6903==0) {
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(Raise.this);
+                                    builder.setTitle("씨앗이 하나도 없습니다.");
+                                    builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            dialog.dismiss();
+                                        }
+                                    });
+                                    AlertDialog dialog = builder.create();
+                                    dialog.show();
+                                }
+                                else {
+                                    before_pot = 5;
+
+                                    Intent i = new Intent(Raise.this, Seed_Choice.class);
+                                    startActivity(i);
+                                    overridePendingTransition(0, 0);
+                                    finish();
+                                }
+                            }
+                            // level1 씨앗
+
+                            else if (f_r_5.level==2) {
+                                if (f_r_5.water==1) {
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(Raise.this);
+                                    builder.setTitle("충분히 축축합니다.");
+                                    builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            dialog.dismiss();
+                                        }
+                                    });
+                                    AlertDialog dialog = builder.create();
+                                    dialog.show();
+                                }
+                                else if (f_r_5.water<=0) {
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(Raise.this);
+                                    builder.setTitle("물기가 없어 보입니다.\n물을 주시겠습니까?");
+                                    builder.setNegativeButton("예", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            if (p1.w_2000>=1) {
+                                                p1.w_2000-=1;
+                                                f_r_5.water+=1;
+
+                                                Intent i = new Intent(Raise.this, Raise.class);
+                                                startActivity(i);
+                                                overridePendingTransition(0, 0);
+                                                finish();
+
+                                                Toast.makeText(getApplicationContext(),  "화분에 물을 주었습니다.", Toast.LENGTH_LONG).show();
+                                            }
+                                            else {
+                                                AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                                                builder3.setTitle("물이 없습니다.");
+                                                builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                                    public void onClick(DialogInterface dialog, int which) {
+                                                        dialog.dismiss();
+                                                    }
+                                                });
+                                                AlertDialog dialog3 = builder3.create();
+                                                dialog3.show();
+                                            }
+                                        }
+                                    });
+                                    builder.setPositiveButton("아니오", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            dialog.dismiss();
+                                        }
+                                    });
+                                    AlertDialog dialog = builder.create();
+                                    dialog.show();
+                                }
+                            }
+                            //level2 raise
+
+                            else if (f_r_5.level==3) {
+                                if (f_r_5.category==6000) {
+                                    book_save(b_s, f_r_5.category);
+
+                                    p1.f_5000+=1;
+
+                                    f_r_5.level=0;
+                                    f_r_5.category=0;
+                                    f_r_5.day=0;
+                                    f_r_5.water=0;
+
+                                    AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                                    builder3.setTitle("씨앗이 다 자라서 "+ f_5000.name+"이 피었습니다!");
+                                    builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Intent i = new Intent(Raise.this, Raise.class);
+                                            startActivity(i);
+                                            overridePendingTransition(0, 0);
+                                            finish();
+                                        }
+                                    });
+                                    AlertDialog dialog3 = builder3.create();
+                                    dialog3.show();
+                                }
+                                else if (f_r_5.category==6001) {
+                                    book_save(b_s, f_r_5.category);
+
+                                    p1.f_5001+=1;
+
+                                    f_r_5.level=0;
+                                    f_r_5.category=0;
+                                    f_r_5.day=0;
+                                    f_r_5.water=0;
+
+                                    AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                                    builder3.setTitle("씨앗이 다 자라서 "+ f_5001.name+"이 피었습니다!");
+                                    builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Intent i = new Intent(Raise.this, Raise.class);
+                                            startActivity(i);
+                                            overridePendingTransition(0, 0);
+                                            finish();
+                                        }
+                                    });
+                                    AlertDialog dialog3 = builder3.create();
+                                    dialog3.show();
+                                }
+                                else if (f_r_5.category==6002) {
+                                    book_save(b_s, f_r_5.category);
+
+                                    p1.f_5002+=1;
+
+                                    f_r_5.level=0;
+                                    f_r_5.category=0;
+                                    f_r_5.day=0;
+                                    f_r_5.water=0;
+
+                                    AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                                    builder3.setTitle("씨앗이 다 자라서 "+ f_5002.name+"이 피었습니다!");
+                                    builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Intent i = new Intent(Raise.this, Raise.class);
+                                            startActivity(i);
+                                            overridePendingTransition(0, 0);
+                                            finish();
+                                        }
+                                    });
+                                    AlertDialog dialog3 = builder3.create();
+                                    dialog3.show();
+                                }
+                                else if (f_r_5.category==6003) {
+                                    book_save(b_s, f_r_5.category);
+
+                                    p1.f_5003+=1;
+
+                                    f_r_5.level=0;
+                                    f_r_5.category=0;
+                                    f_r_5.day=0;
+                                    f_r_5.water=0;
+
+                                    AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                                    builder3.setTitle("씨앗이 다 자라서 "+ f_5003.name+"이 피었습니다!");
+                                    builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Intent i = new Intent(Raise.this, Raise.class);
+                                            startActivity(i);
+                                            overridePendingTransition(0, 0);
+                                            finish();
+                                        }
+                                    });
+                                    AlertDialog dialog3 = builder3.create();
+                                    dialog3.show();
+                                }
+                                else if (f_r_5.category==6004) {
+                                    book_save(b_s, f_r_5.category);
+
+                                    p1.f_5004+=1;
+
+                                    f_r_5.level=0;
+                                    f_r_5.category=0;
+                                    f_r_5.day=0;
+                                    f_r_5.water=0;
+
+                                    AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                                    builder3.setTitle("씨앗이 다 자라서 "+ f_5004.name+"이 피었습니다!");
+                                    builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Intent i = new Intent(Raise.this, Raise.class);
+                                            startActivity(i);
+                                            overridePendingTransition(0, 0);
+                                            finish();
+                                        }
+                                    });
+                                    AlertDialog dialog3 = builder3.create();
+                                    dialog3.show();
+                                }
+                                else if (f_r_5.category==6005) {
+                                    book_save(b_s, f_r_5.category);
+
+                                    p1.f_5005+=1;
+
+                                    f_r_5.level=0;
+                                    f_r_5.category=0;
+                                    f_r_5.day=0;
+                                    f_r_5.water=0;
+
+                                    AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                                    builder3.setTitle("씨앗이 다 자라서 "+ f_5005.name+"이 피었습니다!");
+                                    builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Intent i = new Intent(Raise.this, Raise.class);
+                                            startActivity(i);
+                                            overridePendingTransition(0, 0);
+                                            finish();
+                                        }
+                                    });
+                                    AlertDialog dialog3 = builder3.create();
+                                    dialog3.show();
+                                }
+                                else if (f_r_5.category==6006) {
+                                    book_save(b_s, f_r_5.category);
+
+                                    p1.f_5006+=1;
+
+                                    f_r_5.level=0;
+                                    f_r_5.category=0;
+                                    f_r_5.day=0;
+                                    f_r_5.water=0;
+
+                                    AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                                    builder3.setTitle("씨앗이 다 자라서 "+ f_5006.name+"이 피었습니다!");
+                                    builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Intent i = new Intent(Raise.this, Raise.class);
+                                            startActivity(i);
+                                            overridePendingTransition(0, 0);
+                                            finish();
+                                        }
+                                    });
+                                    AlertDialog dialog3 = builder3.create();
+                                    dialog3.show();
+                                }
+                                else if (f_r_5.category==6007) {
+                                    book_save(b_s, f_r_5.category);
+
+                                    p1.f_5007+=1;
+
+                                    f_r_5.level=0;
+                                    f_r_5.category=0;
+                                    f_r_5.day=0;
+                                    f_r_5.water=0;
+
+                                    AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                                    builder3.setTitle("씨앗이 다 자라서 "+ f_5007.name+"이 피었습니다!");
+                                    builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Intent i = new Intent(Raise.this, Raise.class);
+                                            startActivity(i);
+                                            overridePendingTransition(0, 0);
+                                            finish();
+                                        }
+                                    });
+                                    AlertDialog dialog3 = builder3.create();
+                                    dialog3.show();
+                                }
+                                else if (f_r_5.category==6900) {
+                                    book_save(b_s, f_r_5.category);
+
+                                    p1.f_5900+=1;
+
+                                    f_r_5.level=0;
+                                    f_r_5.category=0;
+                                    f_r_5.day=0;
+                                    f_r_5.water=0;
+
+                                    AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                                    builder3.setTitle("씨앗이 다 자라서 "+ f_5900.name+"이 피었습니다!");
+                                    builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Intent i = new Intent(Raise.this, Raise.class);
+                                            startActivity(i);
+                                            overridePendingTransition(0, 0);
+                                            finish();
+                                        }
+                                    });
+                                    AlertDialog dialog3 = builder3.create();
+                                    dialog3.show();
+                                }
+                                else if (f_r_5.category==6901) {
+                                    book_save(b_s, f_r_5.category);
+
+                                    p1.f_5901+=1;
+
+                                    f_r_5.level=0;
+                                    f_r_5.category=0;
+                                    f_r_5.day=0;
+                                    f_r_5.water=0;
+
+                                    AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                                    builder3.setTitle("씨앗이 다 자라서 "+ f_5901.name+"이 피었습니다!");
+                                    builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Intent i = new Intent(Raise.this, Raise.class);
+                                            startActivity(i);
+                                            overridePendingTransition(0, 0);
+                                            finish();
+                                        }
+                                    });
+                                    AlertDialog dialog3 = builder3.create();
+                                    dialog3.show();
+                                }
+                                else if (f_r_5.category==6902) {
+                                    book_save(b_s, f_r_5.category);
+
+                                    p1.f_5902+=1;
+
+                                    f_r_5.level=0;
+                                    f_r_5.category=0;
+                                    f_r_5.day=0;
+                                    f_r_5.water=0;
+
+                                    AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                                    builder3.setTitle("씨앗이 다 자라서 "+ f_5902.name+"이 피었습니다!");
+                                    builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Intent i = new Intent(Raise.this, Raise.class);
+                                            startActivity(i);
+                                            overridePendingTransition(0, 0);
+                                            finish();
+                                        }
+                                    });
+                                    AlertDialog dialog3 = builder3.create();
+                                    dialog3.show();
+                                }
+                                else if (f_r_5.category==6903) {
+                                    book_save(b_s, f_r_5.category);
+
+                                    p1.f_5903+=1;
+
+                                    f_r_5.level=0;
+                                    f_r_5.category=0;
+                                    f_r_5.day=0;
+                                    f_r_5.water=0;
+
+                                    AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                                    builder3.setTitle("씨앗이 다 자라서 "+ f_5903.name+"이 피었습니다!");
+                                    builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Intent i = new Intent(Raise.this, Raise.class);
+                                            startActivity(i);
+                                            overridePendingTransition(0, 0);
+                                            finish();
+                                        }
+                                    });
+                                    AlertDialog dialog3 = builder3.create();
+                                    dialog3.show();
+                                }
+                            }
+                            // level3 다 자람
+
+                            else if (f_r_5.level==4) {
+                                f_r_5.level=0;
+                                f_r_5.category=0;
+                                f_r_5.day=0;
+                                f_r_5.water=0;
+
+                                AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                                builder3.setTitle("물을 제때 주지 않아 말라비틀어졌습니다.");
+                                builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent i = new Intent(Raise.this, Raise.class);
+                                        startActivity(i);
+                                        overridePendingTransition(0, 0);
+                                        finish();
+                                    }
+                                });
+                                AlertDialog dialog3 = builder3.create();
+                                dialog3.show();
+                            }
+                            // level4 마름
+
+                            else if (f_r_5.level==5) {
+                                f_r_5.level=0;
+                                f_r_5.category=0;
+                                f_r_5.day=0;
+                                f_r_5.water=0;
+
+                                AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                                builder3.setTitle("눈이 내림으로 인해 꽃이 얼어붙었습니다.");
+                                builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent i = new Intent(Raise.this, Raise.class);
+                                        startActivity(i);
+                                        overridePendingTransition(0, 0);
+                                        finish();
+                                    }
+                                });
+                                AlertDialog dialog3 = builder3.create();
+                                dialog3.show();
+                            }
+                            // level5 얼어붙음
+
+                            else if (f_r_5.level==6) {
+                                f_r_5.level=0;
+                                f_r_5.category=0;
+                                f_r_5.day=0;
+                                f_r_5.water=0;
+
+                                AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                                builder3.setTitle("가뭄으로 인하여 꽃이 말라비틀어졌습니다.");
+                                builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent i = new Intent(Raise.this, Raise.class);
+                                        startActivity(i);
+                                        overridePendingTransition(0, 0);
+                                        finish();
+                                    }
+                                });
+                                AlertDialog dialog3 = builder3.create();
+                                dialog3.show();
+                            }
+                            // level6 가뭄
+                        }
+                    });
+                }
+            }
+        });
+        // pot5 터치 이벤트
+
+        ImageView iv_p6 = (ImageView) findViewById(R.id.image_pot6);
+        iv_p6.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if (f_r_6.lock==1) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(Raise.this);
+                    builder.setTitle("잠금을 50000원에 해제하시겠습니까?");
+                    builder.setNegativeButton("예", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            if (p1.money>=50000) {
+                                p1.money-=50000;
+                                f_r_6.lock=0;
+
+                                Intent i = new Intent(Raise.this, Raise.class);
+                                startActivity(i);
+                                overridePendingTransition(0, 0);
+                                finish();
+
+                                Toast.makeText(getApplicationContext(),  "잠금을 해제하였습니다.", Toast.LENGTH_LONG).show();
+                            } else {
+                                Toast.makeText(getApplicationContext(), "돈이 부족합니다.", Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    });
+                    builder.setPositiveButton("아니오", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                }
+                else if (f_r_6.lock==0) {
+                    ImageView iv_p6 = (ImageView)findViewById(R.id.image_pot6);
+                    iv_p6.setOnClickListener(new View.OnClickListener() {
+                        public void onClick(View v) {
+
+                            if (f_r_6.level==0) {
+                                AlertDialog.Builder builder = new AlertDialog.Builder(Raise.this);
+                                builder.setTitle("화분 속이 비어있습니다.\n어떤 흙을 채우시겠습니까?");
+                                builder.setNegativeButton("흙", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        if (p1.s_3000>0) {
+                                            p1.s_3000-=1;
+                                            f_r_6.level=1;
+
+                                            Intent i = new Intent(Raise.this, Raise.class);
+                                            startActivity(i);
+                                            overridePendingTransition(0, 0);
+                                            finish();
+
+                                            Toast.makeText(getApplicationContext(),  "흙으로 화분을 채웠습니다.", Toast.LENGTH_LONG).show();
+                                        }
+                                        else {
+                                            AlertDialog.Builder builder2 = new AlertDialog.Builder(Raise.this);
+                                            builder2.setTitle("흙이 없습니다.");
+                                            builder2.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                                public void onClick(DialogInterface dialog, int which) {
+                                                    dialog.dismiss();
+                                                }
+                                            });
+                                            AlertDialog dialog2 = builder2.create();
+                                            dialog2.show();
+                                        }
+                                    }
+                                });
+                                builder.setPositiveButton("비옥한 흙", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        if (p1.s_3001>0) {
+                                            p1.s_3001-=1;
+                                            f_r_6.level=1;
+                                            f_r_6.day+=1;
+
+                                            Intent i = new Intent(Raise.this, Raise.class);
+                                            startActivity(i);
+                                            overridePendingTransition(0, 0);
+                                            finish();
+
+                                            Toast.makeText(getApplicationContext(),  "비옥한 흙으로 화분을 채웠습니다.", Toast.LENGTH_LONG).show();
+                                        }
+                                        else {
+                                            AlertDialog.Builder builder4 = new AlertDialog.Builder(Raise.this);
+                                            builder4.setTitle("비옥한 흙이 없습니다.");
+                                            builder4.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                                public void onClick(DialogInterface dialog, int which) {
+                                                    dialog.dismiss();
+                                                }
+                                            });
+                                            AlertDialog dialog4 = builder4.create();
+                                            dialog4.show();
+                                        }
+                                    }
+                                });
+                                AlertDialog dialog = builder.create();
+                                dialog.show();
+                            }
+                            // level0 흙
+
+                            else if (f_r_6.level==1) {
+                                if (p1.s_6000==0&&p1.s_6001==0&&p1.s_6002==0&&p1.s_6003==0&&p1.s_6004==0&&p1.s_6005==0&&p1.s_6006==0&&p1.s_6007==0&&p1.s_6900==0&&p1.s_6901==0&&p1.s_6902==0&&p1.s_6903==0) {
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(Raise.this);
+                                    builder.setTitle("씨앗이 하나도 없습니다.");
+                                    builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            dialog.dismiss();
+                                        }
+                                    });
+                                    AlertDialog dialog = builder.create();
+                                    dialog.show();
+                                }
+                                else {
+                                    before_pot = 6;
+
+                                    Intent i = new Intent(Raise.this, Seed_Choice.class);
+                                    startActivity(i);
+                                    overridePendingTransition(0, 0);
+                                    finish();
+                                }
+                            }
+                            // level1 씨앗
+
+                            else if (f_r_6.level==2) {
+                                if (f_r_6.water==1) {
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(Raise.this);
+                                    builder.setTitle("충분히 축축합니다.");
+                                    builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            dialog.dismiss();
+                                        }
+                                    });
+                                    AlertDialog dialog = builder.create();
+                                    dialog.show();
+                                }
+                                else if (f_r_6.water<=0) {
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(Raise.this);
+                                    builder.setTitle("물기가 없어 보입니다.\n물을 주시겠습니까?");
+                                    builder.setNegativeButton("예", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            if (p1.w_2000>=1) {
+                                                p1.w_2000-=1;
+                                                f_r_6.water+=1;
+
+                                                Intent i = new Intent(Raise.this, Raise.class);
+                                                startActivity(i);
+                                                overridePendingTransition(0, 0);
+                                                finish();
+
+                                                Toast.makeText(getApplicationContext(),  "화분에 물을 주었습니다.", Toast.LENGTH_LONG).show();
+                                            }
+                                            else {
+                                                AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                                                builder3.setTitle("물이 없습니다.");
+                                                builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                                    public void onClick(DialogInterface dialog, int which) {
+                                                        dialog.dismiss();
+                                                    }
+                                                });
+                                                AlertDialog dialog3 = builder3.create();
+                                                dialog3.show();
+                                            }
+                                        }
+                                    });
+                                    builder.setPositiveButton("아니오", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            dialog.dismiss();
+                                        }
+                                    });
+                                    AlertDialog dialog = builder.create();
+                                    dialog.show();
+                                }
+                            }
+                            //level2 raise
+
+                            else if (f_r_6.level==3) {
+                                if (f_r_6.category==6000) {
+                                    book_save(b_s, f_r_6.category);
+
+                                    p1.f_5000+=1;
+
+                                    f_r_6.level=0;
+                                    f_r_6.category=0;
+                                    f_r_6.day=0;
+                                    f_r_6.water=0;
+
+                                    AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                                    builder3.setTitle("씨앗이 다 자라서 "+ f_5000.name+"이 피었습니다!");
+                                    builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Intent i = new Intent(Raise.this, Raise.class);
+                                            startActivity(i);
+                                            overridePendingTransition(0, 0);
+                                            finish();
+                                        }
+                                    });
+                                    AlertDialog dialog3 = builder3.create();
+                                    dialog3.show();
+                                }
+                                else if (f_r_6.category==6001) {
+                                    book_save(b_s, f_r_6.category);
+
+                                    p1.f_5001+=1;
+
+                                    f_r_6.level=0;
+                                    f_r_6.category=0;
+                                    f_r_6.day=0;
+                                    f_r_6.water=0;
+
+                                    AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                                    builder3.setTitle("씨앗이 다 자라서 "+ f_5001.name+"이 피었습니다!");
+                                    builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Intent i = new Intent(Raise.this, Raise.class);
+                                            startActivity(i);
+                                            overridePendingTransition(0, 0);
+                                            finish();
+                                        }
+                                    });
+                                    AlertDialog dialog3 = builder3.create();
+                                    dialog3.show();
+                                }
+                                else if (f_r_6.category==6002) {
+                                    book_save(b_s, f_r_6.category);
+
+                                    p1.f_5002+=1;
+
+                                    f_r_6.level=0;
+                                    f_r_6.category=0;
+                                    f_r_6.day=0;
+                                    f_r_6.water=0;
+
+                                    AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                                    builder3.setTitle("씨앗이 다 자라서 "+ f_5002.name+"이 피었습니다!");
+                                    builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Intent i = new Intent(Raise.this, Raise.class);
+                                            startActivity(i);
+                                            overridePendingTransition(0, 0);
+                                            finish();
+                                        }
+                                    });
+                                    AlertDialog dialog3 = builder3.create();
+                                    dialog3.show();
+                                }
+                                else if (f_r_6.category==6003) {
+                                    book_save(b_s, f_r_6.category);
+
+                                    p1.f_5003+=1;
+
+                                    f_r_6.level=0;
+                                    f_r_6.category=0;
+                                    f_r_6.day=0;
+                                    f_r_6.water=0;
+
+                                    AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                                    builder3.setTitle("씨앗이 다 자라서 "+ f_5003.name+"이 피었습니다!");
+                                    builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Intent i = new Intent(Raise.this, Raise.class);
+                                            startActivity(i);
+                                            overridePendingTransition(0, 0);
+                                            finish();
+                                        }
+                                    });
+                                    AlertDialog dialog3 = builder3.create();
+                                    dialog3.show();
+                                }
+                                else if (f_r_6.category==6004) {
+                                    book_save(b_s, f_r_6.category);
+
+                                    p1.f_5004+=1;
+
+                                    f_r_6.level=0;
+                                    f_r_6.category=0;
+                                    f_r_6.day=0;
+                                    f_r_6.water=0;
+
+                                    AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                                    builder3.setTitle("씨앗이 다 자라서 "+ f_5004.name+"이 피었습니다!");
+                                    builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Intent i = new Intent(Raise.this, Raise.class);
+                                            startActivity(i);
+                                            overridePendingTransition(0, 0);
+                                            finish();
+                                        }
+                                    });
+                                    AlertDialog dialog3 = builder3.create();
+                                    dialog3.show();
+                                }
+                                else if (f_r_6.category==6005) {
+                                    book_save(b_s, f_r_6.category);
+
+                                    p1.f_5005+=1;
+
+                                    f_r_6.level=0;
+                                    f_r_6.category=0;
+                                    f_r_6.day=0;
+                                    f_r_6.water=0;
+
+                                    AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                                    builder3.setTitle("씨앗이 다 자라서 "+ f_5005.name+"이 피었습니다!");
+                                    builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Intent i = new Intent(Raise.this, Raise.class);
+                                            startActivity(i);
+                                            overridePendingTransition(0, 0);
+                                            finish();
+                                        }
+                                    });
+                                    AlertDialog dialog3 = builder3.create();
+                                    dialog3.show();
+                                }
+                                else if (f_r_6.category==6006) {
+                                    book_save(b_s, f_r_6.category);
+
+                                    p1.f_5006+=1;
+
+                                    f_r_6.level=0;
+                                    f_r_6.category=0;
+                                    f_r_6.day=0;
+                                    f_r_6.water=0;
+
+                                    AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                                    builder3.setTitle("씨앗이 다 자라서 "+ f_5006.name+"이 피었습니다!");
+                                    builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Intent i = new Intent(Raise.this, Raise.class);
+                                            startActivity(i);
+                                            overridePendingTransition(0, 0);
+                                            finish();
+                                        }
+                                    });
+                                    AlertDialog dialog3 = builder3.create();
+                                    dialog3.show();
+                                }
+                                else if (f_r_6.category==6007) {
+                                    book_save(b_s, f_r_6.category);
+
+                                    p1.f_5007+=1;
+
+                                    f_r_6.level=0;
+                                    f_r_6.category=0;
+                                    f_r_6.day=0;
+                                    f_r_6.water=0;
+
+                                    AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                                    builder3.setTitle("씨앗이 다 자라서 "+ f_5007.name+"이 피었습니다!");
+                                    builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Intent i = new Intent(Raise.this, Raise.class);
+                                            startActivity(i);
+                                            overridePendingTransition(0, 0);
+                                            finish();
+                                        }
+                                    });
+                                    AlertDialog dialog3 = builder3.create();
+                                    dialog3.show();
+                                }
+                                else if (f_r_6.category==6900) {
+                                    book_save(b_s, f_r_6.category);
+
+                                    p1.f_5900+=1;
+
+                                    f_r_6.level=0;
+                                    f_r_6.category=0;
+                                    f_r_6.day=0;
+                                    f_r_6.water=0;
+
+                                    AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                                    builder3.setTitle("씨앗이 다 자라서 "+ f_5900.name+"이 피었습니다!");
+                                    builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Intent i = new Intent(Raise.this, Raise.class);
+                                            startActivity(i);
+                                            overridePendingTransition(0, 0);
+                                            finish();
+                                        }
+                                    });
+                                    AlertDialog dialog3 = builder3.create();
+                                    dialog3.show();
+                                }
+                                else if (f_r_6.category==6901) {
+                                    book_save(b_s, f_r_6.category);
+
+                                    p1.f_5901+=1;
+
+                                    f_r_6.level=0;
+                                    f_r_6.category=0;
+                                    f_r_6.day=0;
+                                    f_r_6.water=0;
+
+                                    AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                                    builder3.setTitle("씨앗이 다 자라서 "+ f_5901.name+"이 피었습니다!");
+                                    builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Intent i = new Intent(Raise.this, Raise.class);
+                                            startActivity(i);
+                                            overridePendingTransition(0, 0);
+                                            finish();
+                                        }
+                                    });
+                                    AlertDialog dialog3 = builder3.create();
+                                    dialog3.show();
+                                }
+                                else if (f_r_6.category==6902) {
+                                    book_save(b_s, f_r_6.category);
+
+                                    p1.f_5902+=1;
+
+                                    f_r_6.level=0;
+                                    f_r_6.category=0;
+                                    f_r_6.day=0;
+                                    f_r_6.water=0;
+
+                                    AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                                    builder3.setTitle("씨앗이 다 자라서 "+ f_5902.name+"이 피었습니다!");
+                                    builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Intent i = new Intent(Raise.this, Raise.class);
+                                            startActivity(i);
+                                            overridePendingTransition(0, 0);
+                                            finish();
+                                        }
+                                    });
+                                    AlertDialog dialog3 = builder3.create();
+                                    dialog3.show();
+                                }
+                                else if (f_r_6.category==6903) {
+                                    book_save(b_s, f_r_6.category);
+
+                                    p1.f_5903+=1;
+
+                                    f_r_6.level=0;
+                                    f_r_6.category=0;
+                                    f_r_6.day=0;
+                                    f_r_6.water=0;
+
+                                    AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                                    builder3.setTitle("씨앗이 다 자라서 "+ f_5903.name+"이 피었습니다!");
+                                    builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Intent i = new Intent(Raise.this, Raise.class);
+                                            startActivity(i);
+                                            overridePendingTransition(0, 0);
+                                            finish();
+                                        }
+                                    });
+                                    AlertDialog dialog3 = builder3.create();
+                                    dialog3.show();
+                                }
+                            }
+                            // level3 다 자람
+
+                            else if (f_r_6.level==4) {
+                                f_r_6.level=0;
+                                f_r_6.category=0;
+                                f_r_6.day=0;
+                                f_r_6.water=0;
+
+                                AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                                builder3.setTitle("물을 제때 주지 않아 말라비틀어졌습니다.");
+                                builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent i = new Intent(Raise.this, Raise.class);
+                                        startActivity(i);
+                                        overridePendingTransition(0, 0);
+                                        finish();
+                                    }
+                                });
+                                AlertDialog dialog3 = builder3.create();
+                                dialog3.show();
+                            }
+                            // level4 마름
+
+                            else if (f_r_6.level==5) {
+                                f_r_6.level=0;
+                                f_r_6.category=0;
+                                f_r_6.day=0;
+                                f_r_6.water=0;
+
+                                AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                                builder3.setTitle("눈이 내림으로 인해 꽃이 얼어붙었습니다.");
+                                builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent i = new Intent(Raise.this, Raise.class);
+                                        startActivity(i);
+                                        overridePendingTransition(0, 0);
+                                        finish();
+                                    }
+                                });
+                                AlertDialog dialog3 = builder3.create();
+                                dialog3.show();
+                            }
+                            // level5 얼어붙음
+
+                            else if (f_r_6.level==6) {
+                                f_r_6.level=0;
+                                f_r_6.category=0;
+                                f_r_6.day=0;
+                                f_r_6.water=0;
+
+                                AlertDialog.Builder builder3 = new AlertDialog.Builder(Raise.this);
+                                builder3.setTitle("가뭄으로 인하여 꽃이 말라비틀어졌습니다.");
+                                builder3.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent i = new Intent(Raise.this, Raise.class);
+                                        startActivity(i);
+                                        overridePendingTransition(0, 0);
+                                        finish();
+                                    }
+                                });
+                                AlertDialog dialog3 = builder3.create();
+                                dialog3.show();
+                            }
+                            // level6 가뭄
+                        }
+                    });
+                }
+            }
+        });
+        // pot6 터치 이벤트
 
         TextView tv2 = (TextView)findViewById(R.id.text_back_timer);
         tv2.setOnClickListener(new View.OnClickListener() {
