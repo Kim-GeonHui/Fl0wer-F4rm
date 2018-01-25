@@ -87,6 +87,17 @@ public class Main extends AppCompatActivity {
         });
         // 꽃키우기 터치 이벤트
 
+        TextView tv5 = (TextView)findViewById(R.id.text_back_synthesis);
+        tv5.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent i = new Intent(Main.this, Synthesis.class);
+                startActivity(i);
+                overridePendingTransition(0, 0);
+                finish();
+            }
+        });
+        // 합성하기 터치 이벤트
+
     }
 
     @Override

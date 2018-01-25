@@ -3732,12 +3732,12 @@ public class Raise extends AppCompatActivity {
                 builder.setTitle("오늘은 눈이 옵니다.");
                 builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        if (0<=num3&&num3<=25) {
+                        if (0<=num3&&num3<=24) {
                             p1.s_7000+=1;
 
                             Toast.makeText(getApplicationContext(),"눈덩이를 획득하였습니다.", Toast.LENGTH_LONG).show();
                         }
-                        else if (50<=num8&&num8<=99) {
+                        else if (25<=num8&&num8<=99) {
                             dialog.dismiss();
                         }
                     }
